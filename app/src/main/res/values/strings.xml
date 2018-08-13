@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Waiter</string>
+    <string name="title_activity_my_menu">MyMenuActivity</string>
+    <string name="title_home">Блюдо</string>
+    <string name="title_dashboard">Десерт</string>
+    <string name="title_notifications">Бар</string>
+    <string name="title_home1">Свободные</string>
+    <string name="title_dashboard1">Мои столы</string>
+    <string name="title_notifications1">Бронь</string>
+</resources>
