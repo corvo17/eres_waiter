@@ -9,8 +9,7 @@
         android:id="@+id/listTab"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
-        android:minHeight="?attr/actionBarSize"
+        android:background="#b500b980"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -20,13 +19,6 @@
         app:tabSelectedTextColor="#ffffff"
         app:tabTextColor="#ffffff" />
 
-    <ProgressBar
-        android:id="@+id/pB"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/listTab" />
 
 
     <android.support.v4.view.ViewPager

@@ -85,16 +85,16 @@ public class Table{
 
 	@Override
  	public String toString(){
-		return 
-			"Table{" + 
-			"hallId = '" + hallId + '\'' + 
-			",description = '" + description + '\'' + 
-			",id = '" + id + '\'' + 
-			",isExtOrder = '" + isExtOrder + '\'' + 
-			",defaultWaiterId = '" + defaultWaiterId + '\'' + 
-			",currentWaiterId = '" + currentWaiterId + '\'' + 
-			",name = '" + name + '\'' + 
-			",tableState = '" + tableState + '\'' + 
+		return
+			"Table{" +
+			"hallId = '" + hallId + '\'' +
+			",description = '" + description + '\'' +
+			",id = '" + id + '\'' +
+			",isExtOrder = '" + isExtOrder + '\'' +
+			",defaultWaiterId = '" + defaultWaiterId + '\'' +
+			",currentWaiterId = '" + currentWaiterId + '\'' +
+			",name = '" + name + '\'' +
+			",tableState = '" + tableState + '\'' +
 			"}";
 		}
 }

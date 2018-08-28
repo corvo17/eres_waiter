@@ -11,9 +11,12 @@ import com.eres.waiter.waiter.model.ProductsItem;
 import com.eres.waiter.waiter.model.Response;
 import com.eres.waiter.waiter.model.TablesItem;
 import com.eres.waiter.waiter.model.test.TestClass;
+import com.eres.waiter.waiter.viewpager.helper.ObservableCollection;
+import com.eres.waiter.waiter.viewpager.model.Hall;
 
 import java.util.ArrayList;
 
+import io.reactivex.Single;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
@@ -24,6 +27,12 @@ import retrofit2.http.Query;
 
 
 public interface ApiInterface {
+
+    @GET("api/tables")
+    Single<ObservableCollection<Hall>> getAllTables();
+
+    @GET("api/tables/mytables")
+    Single<ArrayList<IAmTables>> getAllIAmTables();
 
     @GET("itisyou")
     Call<Response> getResponse();
@@ -47,7 +56,7 @@ public interface ApiInterface {
     Call<ArrayList<DataMenu>> getMenuAll();
 
     @GET("api/orders/ordersfortable")
-    Call<ArrayList<OrderData>> getMyTableList(@Query("tableId") String tableId);
+    Single<ArrayList<OrderData>> getMyTableList(@Query("tableId") String tableId);
 
     @POST("api/orders/saveForWaiter")
     Call<OrderData> sendData(@Body OrderData data);
@@ -55,5 +64,9 @@ public interface ApiInterface {
     @POST("api/menu/productlist")
     Call<ArrayList<ProductsItem>> getProduct(@Body ArrayList<Integer> ints);
 
+    @POST("api/orders/sendtocashier")
+    Call<OrderData> sendCashier(@Query("orderId") String orderId);
 
+    @GET("api/tables/tablesByHallId")
+    Call<ArrayList<TablesItem>> getTables(@Query("hallId") String hallId);
 }

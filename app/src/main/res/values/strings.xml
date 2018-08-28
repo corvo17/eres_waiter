@@ -7,4 +7,7 @@
     <string name="title_home1">Свободные</string>
     <string name="title_dashboard1">Мои столы</string>
     <string name="title_notifications1">Бронь</string>
+    <string name="description">Описание</string>
+    <string name="todo">TODO</string>
+    <string name="server_ip">Server Ip</string>
 </resources>

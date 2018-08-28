@@ -1,8 +1,10 @@
 package com.eres.waiter.waiter.model;
 
+import com.eres.waiter.waiter.viewpager.model.Hall;
+
 import java.util.List;
 
-public class EmptyTable{
+public class EmptyTable {
 
 	private Object description;
 

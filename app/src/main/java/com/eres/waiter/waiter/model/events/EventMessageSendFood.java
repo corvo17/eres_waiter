@@ -1,4 +1,4 @@
-package com.eres.waiter.waiter.model.test;
+package com.eres.waiter.waiter.model.events;
 
 public class EventMessageSendFood {
     boolean sendFood;

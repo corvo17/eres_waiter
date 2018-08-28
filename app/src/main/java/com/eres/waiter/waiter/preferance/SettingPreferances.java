@@ -49,7 +49,37 @@ public class SettingPreferances {
     }
 
     public String getUrl() {
-        return pref.getString("URL", "127.0.0.1");
+        return pref.getString("URL", "http://192.186.0.2:9000");
+    }
+
+    public void setIme(String ime) {
+        editor = pref.edit();
+        editor.putString("IME", ime);
+        editor.apply();
+    }
+
+    public String getIme() {
+        return pref.getString("IME", "0");
+    }
+
+    public void setHallId(int id) {
+        editor = pref.edit();
+        editor.putInt("HALLID", id);
+        editor.apply();
+    }
+
+    public int getHallId() {
+        return pref.getInt("HALLID", 1);
+    }
+
+    public void setHallPosition(int id) {
+        editor = pref.edit();
+        editor.putInt("HALLP", id);
+        editor.apply();
+    }
+
+    public int getHallPosition() {
+        return pref.getInt("HALLP", 0);
     }
 
 }

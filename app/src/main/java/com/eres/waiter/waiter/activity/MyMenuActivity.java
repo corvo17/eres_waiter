@@ -12,7 +12,14 @@ import android.widget.Toast;
 
 import com.eres.waiter.waiter.R;
 import com.eres.waiter.waiter.fragment.FragmentMenu;
+import com.eres.waiter.waiter.model.enums.NotificationTypees;
+import com.eres.waiter.waiter.model.events.EventOnBack;
 import com.eres.waiter.waiter.model.singelton.DataSingelton;
+import com.eres.waiter.waiter.server.NotificationData;
+import com.eres.waiter.waiter.server.WebServer;
+import com.eres.waiter.waiter.viewpager.service.ObservableArrayBlockingQueue;
+
+import org.greenrobot.eventbus.EventBus;
 
 public class MyMenuActivity extends AppCompatActivity {
     private int k = 0;
@@ -22,20 +29,35 @@ public class MyMenuActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_two_contaner);
-        DataSingelton dataSingelton = DataSingelton.getInstance(this);
-        dataSingelton.loadData();
         FragmentMenu fragmentMenu = new FragmentMenu();
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.container1, fragmentMenu);
         transaction.addToBackStack("ss");
         transaction.commit();
-
+//        com.eres.waiter.waiter.viewpager.service.WebServer.Messages.setCollectionChangeListener(new ObservableArrayBlockingQueue.CollectionChangeListener() {
+//            @Override
+//            public void onCollectionChange(ObservableArrayBlockingQueue.NotifyCollectionChangedAction action, Object obj, long position) {
+//                if (action == ObservableArrayBlockingQueue.NotifyCollectionChangedAction.Add) {
+//                    while (com.eres.waiter.waiter.viewpager.service.WebServer.Messages.size() > 0) {
+//                        NotificationData note = com.eres.waiter.waiter.viewpager.service.WebServer.Messages.poll();
+//                        Log.i("TAG_R", "note:" + note.getNotificationTypeId() + " " + note.getTableId());
+//                        if (note.getNotificationTypeId() == NotificationTypees.MenuChanged.ordinal()) {
+//                            DataSingelton.singelton.loadData();
+//                            break;
+//                        }
+//                    }
+//                }
+//            }
+//        });
     }
 
     @Override
     public void onBackPressed() {
         int a = getSupportFragmentManager().getBackStackEntryCount();
-
+        Log.d("MY_BACK", "onBackPressed: " + a);
+        if (a == 2) {
+            EventBus.getDefault().post(new EventOnBack(true));
+        }
         if (a == 1) {
             finish();
         } else super.onBackPressed();

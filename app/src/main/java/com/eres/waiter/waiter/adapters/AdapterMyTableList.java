@@ -1,6 +1,7 @@
 package com.eres.waiter.waiter.adapters;
 
 import android.support.annotation.NonNull;
+import android.support.v7.util.DiffUtil;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,21 +12,29 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.eres.waiter.waiter.R;
+import com.eres.waiter.waiter.adapters.diffUtil.OrderCallback;
 import com.eres.waiter.waiter.model.OrderItemsItem;
-import com.eres.waiter.waiter.model.ProductsItem;
 import com.eres.waiter.waiter.model.enums.OrderState;
 import com.eres.waiter.waiter.preferance.SettingPreferances;
 import com.mikhaellopez.circularimageview.CircularImageView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class AdapterMyTableList extends RecyclerView.Adapter<AdapterMyTableList.MyViewHolder> {
     ArrayList<OrderItemsItem> items;
-    ArrayList<ProductsItem> productsItems;
 
-    public AdapterMyTableList(ArrayList<OrderItemsItem> items, ArrayList<ProductsItem> productsItems) {
+    public void updateList(ArrayList<OrderItemsItem> newList) {
+        DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(new OrderCallback(items, newList));
+        items.clear();
+        items.addAll(newList);
+        diffResult.dispatchUpdatesTo(this);
+        notifyDataSetChanged();
+    }
+
+    public AdapterMyTableList(ArrayList<OrderItemsItem> items) {
         this.items = items;
-        this.productsItems = productsItems;
+
     }
 
     @NonNull
@@ -39,9 +48,8 @@ public class AdapterMyTableList extends RecyclerView.Adapter<AdapterMyTableList.
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        holder.textView.setText(productsItems.get(position).getName());
-        String s = SettingPreferances.preferances.getUrl() + productsItems.get(position).getImageUrl();
-//        Picasso.get().load(s).resize(100, 100).into(holder.circularImageView);
+        holder.textView.setText(items.get(position).getProduct().getName());
+        String s = SettingPreferances.preferances.getUrl() + items.get(position).getProduct().getImageUrl();
         Glide.with(holder.textView.getContext()).load(s).into(holder.circularImageView);
         loadStateId(holder, items.get(position).getStateId());
 
@@ -68,7 +76,7 @@ public class AdapterMyTableList extends RecyclerView.Adapter<AdapterMyTableList.
 
     @Override
     public int getItemCount() {
-        return items.size();
+        return items == null ? 0 : items.size();
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder {

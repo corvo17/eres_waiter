@@ -1,146 +1,146 @@
 package com.eres.waiter.waiter.model;
 
 import java.util.List;
+
 import com.google.gson.annotations.SerializedName;
 
-public class OrderItemsItem{
-	public OrderItemsItem(int id, int productId, int orderId, int factCount, int departmentId, int stateId, int count, List<Object> orderItemSpecialDesires, int orderPartId, Object descriptor) {
-		this.id = id;
-		this.productId = productId;
-		this.orderId = orderId;
-		this.factCount = factCount;
-		this.departmentId = departmentId;
-		this.stateId = stateId;
-		this.count = count;
-		this.orderItemSpecialDesires = orderItemSpecialDesires;
-		this.orderPartId = orderPartId;
-		this.descriptor = descriptor;
-	}
+public class OrderItemsItem {
 
-	@SerializedName("id")
-	private int id;
+    @SerializedName("id")
+    private int id;
 
-	@SerializedName("productId")
-	private int productId;
+    @SerializedName("productId")
+    private int productId;
+    @SerializedName("orderId")
+    private int orderId;
 
-	@SerializedName("orderId")
-	private int orderId;
+    @SerializedName("factCount")
+    private int factCount;
 
-	@SerializedName("factCount")
-	private int factCount;
+    @SerializedName("departmentId")
+    private int departmentId;
 
-	@SerializedName("departmentId")
-	private int departmentId;
+    @SerializedName("stateId")
+    private int stateId;
 
-	@SerializedName("stateId")
-	private int stateId;
+    @SerializedName("count")
+    private int count;
 
-	@SerializedName("count")
-	private int count;
+    @SerializedName("orderItemSpecialDesires")
+    private List<OrderItemSpecialDesire> orderItemSpecialDesires;
 
-	@SerializedName("orderItemSpecialDesires")
-	private List<Object> orderItemSpecialDesires;
+    @SerializedName("orderPartId")
+    private int orderPartId;
 
-	@SerializedName("orderPartId")
-	private int orderPartId;
+    @SerializedName("descriptor")
+    private String descriptor;
+    @SerializedName("descriptor2")
+    private String descriptor2;
+    private ProductsItem product;
 
-	@SerializedName("descriptor")
-	private Object descriptor;
+    public ProductsItem getProduct() {
+        return product;
+    }
 
-	public void setProductId(int productId){
-		this.productId = productId;
-	}
+    public void setProduct(ProductsItem product) {
+        this.product = product;
+    }
 
-	public int getProductId(){
-		return productId;
-	}
+    public void setProductId(int productId) {
+        this.productId = productId;
+    }
 
-	public void setOrderId(int orderId){
-		this.orderId = orderId;
-	}
+    public int getProductId() {
+        return productId;
+    }
 
-	public int getOrderId(){
-		return orderId;
-	}
+    public void setOrderId(int orderId) {
+        this.orderId = orderId;
+    }
 
-	public void setFactCount(int factCount){
-		this.factCount = factCount;
-	}
+    public int getOrderId() {
+        return orderId;
+    }
 
-	public int getFactCount(){
-		return factCount;
-	}
+    public void setFactCount(int factCount) {
+        this.factCount = factCount;
+    }
 
-	public void setDepartmentId(int departmentId){
-		this.departmentId = departmentId;
-	}
+    public int getFactCount() {
+        return factCount;
+    }
 
-	public int getDepartmentId(){
-		return departmentId;
-	}
+    public void setDepartmentId(int departmentId) {
+        this.departmentId = departmentId;
+    }
 
-	public void setStateId(int stateId){
-		this.stateId = stateId;
-	}
+    public int getDepartmentId() {
+        return departmentId;
+    }
 
-	public int getStateId(){
-		return stateId;
-	}
+    public void setStateId(int stateId) {
+        this.stateId = stateId;
+    }
 
-	public void setCount(int count){
-		this.count = count;
-	}
+    public int getStateId() {
+        return stateId;
+    }
 
-	public int getCount(){
-		return count;
-	}
+    public void setCount(int count) {
+        this.count = count;
+    }
 
-	public void setOrderItemSpecialDesires(List<Object> orderItemSpecialDesires){
-		this.orderItemSpecialDesires = orderItemSpecialDesires;
-	}
+    public int getCount() {
+        return count;
+    }
 
-	public List<Object> getOrderItemSpecialDesires(){
-		return orderItemSpecialDesires;
-	}
+    public OrderItemsItem(int id, int productId, int orderId, int factCount, int departmentId, int stateId, int count, List<OrderItemSpecialDesire> orderItemSpecialDesires, int orderPartId, String descriptor, String descriptor2) {
+        this.id = id;
+        this.productId = productId;
+        this.orderId = orderId;
+        this.factCount = factCount;
+        this.departmentId = departmentId;
+        this.stateId = stateId;
+        this.count = count;
+        this.orderItemSpecialDesires = orderItemSpecialDesires;
+        this.orderPartId = orderPartId;
+        this.descriptor = descriptor;
+        this.descriptor2 = descriptor2;
+    }
 
-	public void setOrderPartId(int orderPartId){
-		this.orderPartId = orderPartId;
-	}
+    public List<OrderItemSpecialDesire> getOrderItemSpecialDesires() {
+        return orderItemSpecialDesires;
+    }
 
-	public int getOrderPartId(){
-		return orderPartId;
-	}
+    public String getDescriptor2() {
+        return descriptor2;
+    }
 
-	public void setId(int id){
-		this.id = id;
-	}
+    public void setOrderItemSpecialDesires(List<OrderItemSpecialDesire> orderItemSpecialDesires) {
+        this.orderItemSpecialDesires = orderItemSpecialDesires;
+    }
 
-	public int getId(){
-		return id;
-	}
+    public void setOrderPartId(int orderPartId) {
+        this.orderPartId = orderPartId;
+    }
 
-	public void setDescriptor(Object descriptor){
-		this.descriptor = descriptor;
-	}
+    public int getOrderPartId() {
+        return orderPartId;
+    }
 
-	public Object getDescriptor(){
-		return descriptor;
-	}
+    public void setId(int id) {
+        this.id = id;
+    }
 
-	@Override
- 	public String toString(){
-		return 
-			"OrderItemsItem1{" + 
-			"productId = '" + productId + '\'' + 
-			",orderId = '" + orderId + '\'' + 
-			",factCount = '" + factCount + '\'' + 
-			",departmentId = '" + departmentId + '\'' + 
-			",stateId = '" + stateId + '\'' + 
-			",count = '" + count + '\'' + 
-			",orderItemSpecialDesires = '" + orderItemSpecialDesires + '\'' + 
-			",orderPartId = '" + orderPartId + '\'' + 
-			",id = '" + id + '\'' + 
-			",descriptor = '" + descriptor + '\'' + 
-			"}";
-		}
+    public int getId() {
+        return id;
+    }
+
+    public String getDescriptor() {
+        return descriptor;
+    }
+
+    public void setDescriptor(String descriptor) {
+        this.descriptor = descriptor;
+    }
 }

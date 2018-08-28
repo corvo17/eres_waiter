@@ -8,12 +8,23 @@
     android:focusable="true"
     android:padding="4dp">
 
+
     <ImageView
         android:id="@+id/mm"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:clickable="true"
         android:src="@drawable/table" />
+
+    <View
+        android:id="@+id/event"
+        android:layout_width="10dp"
+        android:layout_height="10dp"
+        android:layout_marginLeft="5dp"
+        android:background="@drawable/back_button_red"
+        android:visibility="gone"
+        app:layout_constraintLeft_toLeftOf="@id/mm"
+        app:layout_constraintTop_toTopOf="@id/mm" />
 
     <TextView
 

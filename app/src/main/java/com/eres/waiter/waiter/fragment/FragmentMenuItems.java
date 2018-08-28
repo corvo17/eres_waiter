@@ -14,11 +14,9 @@ import android.view.animation.Animation;
 
 import com.eres.waiter.waiter.R;
 import com.eres.waiter.waiter.adapters.MenuAdapter;
-import com.eres.waiter.waiter.fragment.viewpager_fragment.FragmentMenuItem;
 import com.eres.waiter.waiter.model.ProductsItem;
 import com.eres.waiter.waiter.model.singelton.DataSingelton;
-import com.eres.waiter.waiter.model.test.EventMessage;
-import com.labo.kaji.fragmentanimations.CubeAnimation;
+import com.eres.waiter.waiter.model.events.EventMessage;
 import com.labo.kaji.fragmentanimations.MoveAnimation;
 
 import org.greenrobot.eventbus.EventBus;

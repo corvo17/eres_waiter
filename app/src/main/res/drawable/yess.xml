@@ -1,0 +1,59 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    android:width="620dp"
+    android:height="620dp"
+    android:viewportWidth="62"
+    android:viewportHeight="62">
+  <path
+      android:pathData="M32.506,32.4986m-28.2172,0a28.2178,28.2172 90,1 1,56.4344 0a28.2178,28.2172 90,1 1,-56.4344 0"
+      android:strokeColor="#00000000">
+    <aapt:attr name="android:fillColor">
+      <gradient 
+          android:gradientRadius="28.45158"
+          android:centerX="32.506"
+          android:centerY="32.26482"
+          android:type="radial">
+        <item android:offset="0" android:color="#FFC0C0C0"/>
+        <item android:offset="0.88" android:color="#FFC0C0C0"/>
+        <item android:offset="1" android:color="#00C0C0C0"/>
+      </gradient>
+    </aapt:attr>
+  </path>
+  <path
+      android:pathData="M31,31m-25.8,0a25.8,25.8 0,1 1,51.6 0a25.8,25.8 0,1 1,-51.6 0"
+      android:strokeWidth="2"
+      android:fillAlpha="1">
+    <aapt:attr name="android:fillColor">
+      <gradient 
+          android:startY="7.0127"
+          android:startX="42.9863"
+          android:endY="51.9871"
+          android:endX="22.0144"
+          android:type="linear">
+        <item android:offset="0" android:color="#FF1FDE00"/>
+        <item android:offset="1" android:color="#FF008000"/>
+      </gradient>
+    </aapt:attr>
+    <aapt:attr name="android:strokeColor">
+      <gradient 
+          android:startY="41.179295"
+          android:startX="54.509937"
+          android:endY="16.2485"
+          android:endX="9.5471"
+          android:type="linear">
+        <item android:offset="0" android:color="#FF004000"/>
+        <item android:offset="1" android:color="#FF006F00"/>
+      </gradient>
+    </aapt:attr>
+  </path>
+  <path
+      android:pathData="M10.5662,39.1574C10.5662,39.1574 18.0614,47.5977 19.5604,51.0454L26.0062,51.0454C28.7045,42.8008 39.1977,23.1178 48.1918,16.2223C50.0553,13.8263 45.3739,12.8374 41.5961,14.4234C35.9024,16.8139 25.1638,35.0652 23.1581,39.4572C20.3099,40.2067 17.3119,34.6603 17.3119,34.6603L10.5662,39.1574z"
+      android:strokeAlpha="1"
+      android:strokeLineJoin="miter"
+      android:strokeWidth="1"
+      android:fillColor="#ffffff"
+      android:strokeColor="#00000000"
+      android:fillType="evenOdd"
+      android:fillAlpha="1"
+      android:strokeLineCap="butt"/>
+</vector>

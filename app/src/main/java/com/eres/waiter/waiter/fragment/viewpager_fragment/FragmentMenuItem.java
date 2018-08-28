@@ -37,15 +37,12 @@ public class FragmentMenuItem extends Fragment {
     private ViewPager viewPager;
     private MyPagerAdapter myInnerPagerAdapter;
     private static String TAG = "MY_LOG";
-    private ProgressBar progressBar;
     private int key = -1;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.empty_layout, container, false);
-        progressBar = view.findViewById(R.id.pB);
-        progressBar.setVisibility(View.VISIBLE);
         tabLayout = view.findViewById(R.id.listTab);
         viewPager = view.findViewById(R.id.pagerInner);
         key = getArguments().getInt("POS");
@@ -63,7 +60,6 @@ public class FragmentMenuItem extends Fragment {
     }
 
     public void loadViewPager() {
-        progressBar.setVisibility(View.GONE);
         onLoadTabLayout();
         myInnerPagerAdapter = new MyPagerAdapter(getFragmentManager(), key, list.size());
         viewPager.setAdapter(myInnerPagerAdapter);

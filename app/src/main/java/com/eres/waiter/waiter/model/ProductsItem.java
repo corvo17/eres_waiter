@@ -12,6 +12,15 @@ public class ProductsItem extends BaseMyITem {
     private String description;
 
     private int price;
+    private boolean сonfirmed;
+
+    public boolean isСonfirmed() {
+        return сonfirmed;
+    }
+
+    public void setСonfirmed(boolean сonfirmed) {
+        this.сonfirmed = сonfirmed;
+    }
 
     private String imageUrl;
 
@@ -24,20 +33,24 @@ public class ProductsItem extends BaseMyITem {
     private String name;
 
     private int excluded;
-    private ArrayList<Object> specialDesires;
+    private ArrayList<Desire> specialDesires;
+    private ArrayList<ProdIngredient> prodIngredients;
 
-    public ArrayList<Object> getSpecialDesires() {
+    public ArrayList<Desire> getSpecialDesires() {
         return specialDesires;
     }
 
-    public void setSpecialDesires(ArrayList<Object> specialDesires) {
-        this.specialDesires = specialDesires;
+    public ArrayList<ProdIngredient> getProdIngredients() {
+        return prodIngredients;
     }
 
-    public ProductsItem(int categoryId, int isDish, String description, int price, String imageUrl, int id, int departmentId, int code, String name, int excluded, ArrayList<Object> specialDesires) {
+    public void setProdIngredients(ArrayList<ProdIngredient> prodIngredients) {
+        this.prodIngredients = prodIngredients;
+    }
+
+    public ProductsItem(int categoryId, int isDish, String description, int price, String imageUrl, int id, int departmentId, int code, String name, int excluded, ArrayList<Desire> specialDesires, ArrayList<ProdIngredient> prodIngredients) {
         this.categoryId = categoryId;
         this.isDish = isDish;
-        this.specialDesires = specialDesires;
         this.description = description;
         this.price = price;
         this.imageUrl = imageUrl;
@@ -46,7 +59,12 @@ public class ProductsItem extends BaseMyITem {
         this.code = code;
         this.name = name;
         this.excluded = excluded;
-        this.count = 0;
+        this.specialDesires = specialDesires;
+        this.prodIngredients = prodIngredients;
+    }
+
+    public void setSpecialDesires(ArrayList<Desire> specialDesires) {
+        this.specialDesires = specialDesires;
     }
 
     public void setCategoryId(int categoryId) {
@@ -129,20 +147,4 @@ public class ProductsItem extends BaseMyITem {
         return excluded;
     }
 
-    @Override
-    public String toString() {
-        return
-                "ProductsItem{" +
-                        "categoryId = '" + categoryId + '\'' +
-                        ",isDish = '" + isDish + '\'' +
-                        ",description = '" + description + '\'' +
-                        ",price = '" + price + '\'' +
-                        ",imageUrl = '" + imageUrl + '\'' +
-                        ",id = '" + id + '\'' +
-                        ",departmentId = '" + departmentId + '\'' +
-                        ",code = '" + code + '\'' +
-                        ",name = '" + name + '\'' +
-                        ",excluded = '" + excluded + '\'' +
-                        "}";
-    }
 }

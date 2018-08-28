@@ -1,19 +1,28 @@
 package com.eres.waiter.waiter.adapters;
 
+import android.app.Dialog;
 import android.support.annotation.NonNull;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.eres.waiter.waiter.R;
+import com.eres.waiter.waiter.adapters.dialogadapters.AdapterCheckList;
+import com.eres.waiter.waiter.model.ProdIngredient;
 import com.eres.waiter.waiter.model.ProductsItem;
 import com.eres.waiter.waiter.model.singelton.DataSingelton;
 import com.eres.waiter.waiter.model.test.DataAddList;
+import com.eres.waiter.waiter.preferance.SettingPreferances;
 import com.mikhaellopez.circularimageview.CircularImageView;
 import com.squareup.picasso.Picasso;
 
@@ -39,8 +48,14 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MyMenuViewHold
         setMyTextView(holder, position);
 //        Glide.with(holder.name.getContext()).load("http://192.168.0.118:8000/" + items.get(position).getImageUrl()).into(holder.img);
 //        Glide.with(holder.name.getContext()).load("http://loremflickr.com/320/240/dog").into(holder.img);
+        holder.info.setOnClickListener(v -> {
+            info(items.get(position), v);
 
-        Picasso.get().load("http://192.168.0.118:8000/" + items.get(position).getImageUrl()).resize(100, 100).into(holder.img);
+
+        });
+        String url = SettingPreferances.preferances.getUrl() + items.get(position).getImageUrl();
+        Log.d("PING_TEST", "onBindViewHolder: " + url);
+        Picasso.get().load(url).resize(100, 100).into(holder.img);
         holder.add.setOnClickListener(v -> {
             items.get(position).addCount();
             setMyTextView(holder, position);
@@ -56,7 +71,50 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MyMenuViewHold
             }
 
         });
+        holder.sendData.setOnClickListener(v -> {
 
+            Dialog dialog = new Dialog(holder.sendData.getContext());
+            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+            dialog.setContentView(R.layout.dialog_send_data_layout);
+            Button button = dialog.findViewById(R.id.ok);
+            RecyclerView recyclerView = dialog.findViewById(R.id.rec_chack);
+            AdapterCheckList adapterCheckList = new AdapterCheckList(items.get(position).getSpecialDesires());
+            recyclerView.setLayoutManager(new LinearLayoutManager(v.getContext()));
+            recyclerView.setAdapter(adapterCheckList);
+            button.setOnClickListener(v1 -> {
+                EditText editText = dialog.findViewById(R.id.comment);
+                String s = editText.getText().toString();
+                items.get(position).setTextSpecialDesires(s);
+                dialog.dismiss();
+            });
+            dialog.show();
+        });
+
+
+    }
+
+    private void info(ProductsItem item, View view) {
+        Dialog dialog = new Dialog(view.getContext());
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.layout_menu_info);
+        TextView textView = dialog.findViewById(R.id.description);
+        TextView ingredient = dialog.findViewById(R.id.ingredient);
+        String s = item.getDescription();
+        if (item.getProdIngredients() != null) {
+            String ingredients = "";
+            for (ProdIngredient prodIngredient : item.getProdIngredients()) {
+                ingredients += prodIngredient.getIngredient().getName() + "\n";
+            }
+            ingredient.setText(ingredients);
+        }
+        s = s.replaceAll(" ", "");
+        String res = s.replaceAll(",", "\n");
+        textView.setText(res);
+        Button button = dialog.findViewById(R.id.ok);
+        button.setOnClickListener(v -> {
+            dialog.dismiss();
+        });
+        dialog.show();
     }
 
     public void setMyTextView(MyMenuViewHolder holder, int pos) {
@@ -66,7 +124,7 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MyMenuViewHold
 
     @Override
     public int getItemCount() {
-        return items.size();
+        return items != null ? items.size() : 0;
     }
 
     public class MyMenuViewHolder extends RecyclerView.ViewHolder {
@@ -75,9 +133,13 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MyMenuViewHold
         private CircularImageView img;
         private ImageButton add, minus;
         private TextView count;
+        private ImageView sendData;
+        private ImageView info;
 
         public MyMenuViewHolder(View itemView) {
             super(itemView);
+            info = itemView.findViewById(R.id.info);
+            sendData = itemView.findViewById(R.id.sendComment);
             count = itemView.findViewById(R.id.count);
             name = itemView.findViewById(R.id.name);
             img = itemView.findViewById(R.id.imga);

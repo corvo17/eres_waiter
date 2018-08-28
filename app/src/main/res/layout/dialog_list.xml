@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="300dp"
-    android:layout_height="400dp">
+    android:layout_width="340dp"
+    android:layout_height="520dp">
 
     <TextView
-        android:textStyle="italic|bold"
         android:id="@+id/table"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="1- STOL"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:textStyle="italic|bold" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/list_menu"
@@ -40,12 +40,12 @@
         app:layout_constraintBottom_toTopOf="@id/clr" />
 
     <Button
-        android:textColor="#ffffff"
         android:id="@+id/clr"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="4dp"
         android:background="#ae1010"
         android:text="Очистить"
+        android:textColor="#ffffff"
         app:layout_constraintBottom_toBottomOf="parent" />
 </android.support.constraint.ConstraintLayout>
