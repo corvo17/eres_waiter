@@ -22,6 +22,7 @@ import com.eres.waiter.waiter.preferance.SettingPreferances;
 import com.eres.waiter.waiter.viewpager.helper.ObservableCollection;
 import com.eres.waiter.waiter.viewpager.model.Hall;
 import com.eres.waiter.waiter.viewpager.viewmodel.AllTablesViewModel;
+import com.labo.kaji.fragmentanimations.CubeAnimation;
 
 public class AllTablesFragment extends Fragment {
 
@@ -53,7 +54,6 @@ public class AllTablesFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.empty_layout, container, false);
         tabLayout = (TabLayout) view.findViewById(R.id.listTab);
-
         vPager = (ViewPager) view.findViewById(R.id.pagerInner);
         AllTablesViewModel model = ViewModelProviders.of(this).get(AllTablesViewModel.class);
         data = model.getData();
@@ -66,6 +66,9 @@ public class AllTablesFragment extends Fragment {
                 pageAdapter = new MyFragmentPagerAdapter(model.getData(), getFragmentManager());
                 vPager.setAdapter(pageAdapter);
                 tabLayout.setupWithViewPager(vPager);
+
+//                vPager.setPageTransformer(false, new CubeAnimation().);
+
                 pageAdapter.notifyDataSetChanged();
                 if (tabLayout != null) {
                     TabLayout.Tab tab = tabLayout.getTabAt(SettingPreferances.preferances.getHallPosition());
@@ -80,6 +83,11 @@ public class AllTablesFragment extends Fragment {
         tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
+//                View view1 = LayoutInflater.from(getContext()).inflate(R.layout.custum_view, container, false);
+//
+//                tab.setCustomView(view1);
+//                Log.d("TAB_TEST", "onTabSelected: " + tab.getText());
+
                 tabPos = tab.getPosition();
             }
 
@@ -90,12 +98,10 @@ public class AllTablesFragment extends Fragment {
 
             @Override
             public void onTabReselected(TabLayout.Tab tab) {
-
             }
         });
         return view;
     }
-
 
 
     @Override
@@ -116,63 +122,6 @@ public class AllTablesFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-//
-//        WebServer.Messages.setCollectionChangeListener(
-//                new ObservableArrayBlockingQueue.CollectionChangeListener() {
-//                    @Override
-//                    public void onCollectionChange(ObservableArrayBlockingQueue.NotifyCollectionChangedAction action, Object obj, long position) {
-//                        if (action == ObservableArrayBlockingQueue.NotifyCollectionChangedAction.Add) {
-//                            while (WebServer.Messages.size() > 0) {
-//                                NotificationData note = WebServer.Messages.poll();
-//                                int a = note.getNotificationTypeId();
-//                                Log.i("TAG_R", "note:" + note.getNotificationTypeId() + " " + note.getTableId());
-//
-//                                if (a == 15) {
-        //            DataSingelton.
-
-
-        //                                    if (halls != null) {
-//                                        Log.i("TAG_R", "removed begin note:" + note.getNotificationTypeId() + " " + note.getTableId());
-//                                        tables = null;
-//                                        table = null;
-//
-//                                        for (Hall hall : halls) {
-//                                            tables = hall.getTables();
-//                                            for (Table table1 : hall.getTables()) {
-//                                                if (table1.getId() == note.getTableId()) {
-//                                                    table = table1;
-//                                                    break;
-//                                                }
-//                                            }
-//                                            if (table != null)
-//                                                break;
-//                                        }
-// table ni uchirish
-//                                        getActivity().runOnUiThread(new Runnable() {
-//                                            @Override
-//                                            public void run() {
-//                                                if (table != null)
-//                                                    Log.i("TAG_R", "run: ");
-//                                                tables.remove(table);
-//                                            }
-//                                        });
-//
-//
-//                                    }
-//                                    Log.i("at", "removed end note:" + note.getNotificationTypeId() + " " + note.getTableId());
-//                                } else if (a == NotificationTypees.TableIsNotServiced.ordinal()) {
-//// tableni qoshish
-//                                    tables.add(note.getTable());
-//
-//                                }
-//                            }
-//                        }
-//                    }
-//
-//                }
-//
-//
-//        );
 
     }
 
@@ -214,9 +163,6 @@ public class AllTablesFragment extends Fragment {
                 return halldata.getValue().get(position).getName();
             return null;
         }
-
-
-
 
 
     }

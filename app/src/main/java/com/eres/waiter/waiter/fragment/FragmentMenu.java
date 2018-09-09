@@ -263,10 +263,9 @@ public class FragmentMenu extends Fragment {
                     s,
                     item.getTextSpecialDesires()));
         }
-        int orderId = 0;
+        int orderId = SettingPreferances.preferances.getOrderId();
         if (DataSingelton.getMyOrders().size() > 0) {
             state = true;
-            orderId = SettingPreferances.preferances.getOrderId();
             orderItemsItems.addAll(DataSingelton.getMyOrders());
         } else {
 

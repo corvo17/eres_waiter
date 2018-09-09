@@ -19,6 +19,9 @@ import com.eres.waiter.waiter.model.events.EventIAmTableChange;
 import com.eres.waiter.waiter.model.events.EventOnBack;
 import com.eres.waiter.waiter.model.singelton.DataSingelton;
 import com.eres.waiter.waiter.model.test.IEventTable;
+import com.eres.waiter.waiter.model.test.NotificationEventAlarm;
+import com.eres.waiter.waiter.retrofit.ApiClient;
+import com.eres.waiter.waiter.retrofit.ApiInterface;
 import com.eres.waiter.waiter.server.NotificationData;
 import com.eres.waiter.waiter.viewpager.helper.ObservableCollection;
 import com.eres.waiter.waiter.viewpager.model.Hall;
@@ -90,6 +93,8 @@ public class MainActivity extends AppCompatActivity implements MyTestInterface {
     }
 
     public void loadLocalServer() {
+        ApiInterface apiInterface = ApiClient.getRetrofit(this).create(ApiInterface.class);
+
         Log.d("TAG_R", "loadLocalServer: " + App.getMessage().size());
         ObservableCollection<NotificationData> noteAll = App.getMessage();
         com.eres.waiter.waiter.viewpager.service.WebServer.messages.setCollectionChangeListener(
@@ -109,8 +114,9 @@ public class MainActivity extends AppCompatActivity implements MyTestInterface {
                                 }
                                 if (a == NotificationTypees.OrderAcceptedInKitchen.ordinal() || NotificationTypees.OrderProblemsInKithen.ordinal() == a || NotificationTypees.CompleteKitchen.ordinal() == a) {
 
-                                    Log.d(TAG, "onCollectionChangeTable: " + note.getTableId());
-                                    checkEventIAmTable(note.getTableId());
+                                    Log.d("TEST_EVENT1", "Strart note event : " + note.getTableId() + " type =  " + a);
+                                    checkEventIAmTable(note.getTableId(), a);
+                                    App.message.remove(note);
                                     // Qaysi afitsiant notifay qsa ham event ketaveradi !!!!
                                 }
 
@@ -145,10 +151,20 @@ public class MainActivity extends AppCompatActivity implements MyTestInterface {
         Log.d("MY_LOG", "send: " + s);
     }
 
-    public void checkEventIAmTable(int id) {
-
+    public void checkEventIAmTable(int id, int event) {
+        boolean a = false;
         EventBus.getDefault().post(new EventIAmTableChange(true));
+        for (NotificationEventAlarm eventAlarm : DataSingelton.eventNotifAlarm) {
+            if (eventAlarm.getId() == id) {
+                a = true;
+                eventAlarm.setNotifType(event);
+                DataSingelton.eventNotifAlarm.add(eventAlarm);
+                break;
+            }
+        }
 
-        DataSingelton.eventTables.add(id);
+        if (!a) {
+            DataSingelton.eventNotifAlarm.add(new NotificationEventAlarm(id, event));
+        }
     }
 }

@@ -2,7 +2,7 @@ package com.eres.waiter.waiter.model;
 
 import com.eres.waiter.waiter.server.NotificationData;
 
-public class IAmTables extends BaseIAmTable{
+public class IAmTables extends BaseIAmTable {
     public IAmTables(int hallId, Object description, int id, boolean isExtOrder, int defaultWaiterId, Object currentWaiterId, String name, int tableState) {
         this.hallId = hallId;
         this.description = description;
@@ -109,7 +109,8 @@ public class IAmTables extends BaseIAmTable{
                         "}";
     }
 }
-class BaseIAmTable{
+
+class BaseIAmTable {
     private NotificationData notificationData;
 
     public NotificationData getNotificationData() {
@@ -120,13 +121,13 @@ class BaseIAmTable{
         this.notificationData = notificationData;
     }
 
-    private boolean type;
+    private int type = -1;
 
-    public boolean isType() {
+    public int isType() {
         return type;
     }
 
-    public void setType(boolean type) {
+    public void setType(int type) {
         this.type = type;
     }
 }

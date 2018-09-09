@@ -97,19 +97,37 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MyMenuViewHold
         Dialog dialog = new Dialog(view.getContext());
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.layout_menu_info);
+
         TextView textView = dialog.findViewById(R.id.description);
-        TextView ingredient = dialog.findViewById(R.id.ingredient);
+        Button btnDes, btnRet;
+        btnDes = dialog.findViewById(R.id.desc);
+        btnRet = dialog.findViewById(R.id.ret);
         String s = item.getDescription();
+        TextView textV = dialog.findViewById(R.id.title);
+        textV.setText(item.getName());
+        String ingredients = "";
         if (item.getProdIngredients() != null) {
-            String ingredients = "";
             for (ProdIngredient prodIngredient : item.getProdIngredients()) {
                 ingredients += prodIngredient.getIngredient().getName() + "\n";
             }
-            ingredient.setText(ingredients);
+
         }
+
         s = s.replaceAll(" ", "");
         String res = s.replaceAll(",", "\n");
-        textView.setText(res);
+        String finalIngredients = ingredients;
+        btnDes.setOnClickListener(v -> {
+            btnRet.setBackgroundResource(R.drawable.back_button);
+            btnDes.setBackgroundResource(R.drawable.back_button_press);
+            textView.setText(finalIngredients);
+        });
+        btnRet.setOnClickListener(v -> {
+            btnRet.setBackgroundResource(R.drawable.back_button_press);
+            btnDes.setBackgroundResource(R.drawable.back_button);
+            textView.setText(res);
+        });
+
+
         Button button = dialog.findViewById(R.id.ok);
         button.setOnClickListener(v -> {
             dialog.dismiss();
@@ -130,7 +148,7 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MyMenuViewHold
     public class MyMenuViewHolder extends RecyclerView.ViewHolder {
 
         private TextView name;
-        private CircularImageView img;
+        private ImageView img;
         private ImageButton add, minus;
         private TextView count;
         private ImageView sendData;

@@ -32,6 +32,16 @@ public class FragmentReservation extends Fragment {
     private RecyclerView recyclerView;
     private ArrayList<ArmoredTables> list;
     private String TAG = "MY_LOG";
+    private AdapterArmored adapterArmored;
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (adapterArmored != null) {
+            adapterArmored.notifyDataSetChanged();
+        }
+
+    }
 
     @Nullable
     @Override
@@ -44,7 +54,7 @@ public class FragmentReservation extends Fragment {
     }
 
     public void loadRecyler() {
-        AdapterArmored adapterArmored = new AdapterArmored(list);
+        adapterArmored = new AdapterArmored(list);
         recyclerView.setAdapter(adapterArmored);
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 4));
         adapterArmored.notifyDataSetChanged();

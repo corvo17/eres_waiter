@@ -32,7 +32,7 @@
                 android:gravity="center_vertical"
                 android:paddingLeft="20sp"
                 android:paddingRight="20sp"
-                android:text="ERES"
+                android:text="ERES Меню"
                 android:textColor="#ffffff"
                 android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -61,7 +61,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_clipboard" />
+                app:srcCompat="@drawable/ic_order" />
 
             <EditText
                 android:id="@+id/editT"
@@ -93,6 +93,9 @@
         android:layout_marginEnd="0dp"
         android:layout_marginStart="0dp"
         android:background="?android:attr/windowBackground"
+        app:itemBackground="@drawable/bottom_navigator_item_back"
+        app:itemIconTint="@color/navigation"
+        app:itemTextColor="@color/navigation"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"

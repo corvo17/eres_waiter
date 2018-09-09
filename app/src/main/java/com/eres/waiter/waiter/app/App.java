@@ -73,8 +73,14 @@ public class App extends Application {
         }
     }
 
-    public void removeMessage(NotificationData data) {
-        message.remove(data);
+    public void removeMessage(int id, int type) {
+        int q = type;
+        for (NotificationData data : message) {
+            if (data.getTableId() == id && q == data.getNotificationTypeId()) {
+                message.remove(data);
+            }
+        }
+        Log.d("TEST_EVENT1", "removeMessage: " + message.size());
     }
 
     public void updateData() {

@@ -13,11 +13,9 @@ import android.widget.Toast;
 import com.eres.waiter.waiter.R;
 import com.eres.waiter.waiter.adapters.AdapterMyTableList;
 import com.eres.waiter.waiter.app.App;
-import com.eres.waiter.waiter.model.Data;
 import com.eres.waiter.waiter.model.OrderData;
 import com.eres.waiter.waiter.model.OrderItemsItem;
 import com.eres.waiter.waiter.model.ProductsItem;
-import com.eres.waiter.waiter.model.enums.NotificationTypees;
 import com.eres.waiter.waiter.model.events.EventMessageSendFood;
 import com.eres.waiter.waiter.model.singelton.DataSingelton;
 import com.eres.waiter.waiter.preferance.SettingPreferances;
@@ -25,14 +23,11 @@ import com.eres.waiter.waiter.retrofit.ApiClient;
 import com.eres.waiter.waiter.retrofit.ApiInterface;
 import com.eres.waiter.waiter.server.NotificationData;
 import com.eres.waiter.waiter.viewpager.helper.ObservableCollection;
-import com.eres.waiter.waiter.viewpager.service.ObservableArrayBlockingQueue;
-import com.eres.waiter.waiter.viewpager.service.WebServer;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
 import java.util.ArrayList;
-import java.util.Collection;
 
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
@@ -55,6 +50,7 @@ public class FoodListActivity extends AppCompatActivity {
     AdapterMyTableList adapterMyTableList;
     private boolean load = false;
 
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
@@ -73,6 +69,7 @@ public class FoodListActivity extends AppCompatActivity {
         items = new ArrayList<>();
         button = findViewById(R.id.add);
         button.setOnClickListener(v -> {
+
             DataSingelton.getMyOrders().clear();
             DataSingelton.setMyOrders(items);
             Log.d(TAG, "TESTSETT: " + DataSingelton.getMyOrders().size());
@@ -109,6 +106,8 @@ public class FoodListActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+
+        if (adapterMyTableList != null) loadDataNotif();
         if (!load) load = true;
         else loadData();
 
@@ -129,12 +128,13 @@ public class FoodListActivity extends AppCompatActivity {
     }
 
     public void loadDataNotif() {
-        disposable = App.getApp().getAllOrderData(id).subscribe(new Consumer<ArrayList<OrderData>>() {
-            @Override
-            public void accept(ArrayList<OrderData> orderData) throws Exception {
-                adapterMyTableList.updateList((ArrayList<OrderItemsItem>) orderData.get(0).getOrderItems());
-            }
-        });
+
+            disposable = App.getApp().getAllOrderData(id).subscribe(new Consumer<ArrayList<OrderData>>() {
+                @Override
+                public void accept(ArrayList<OrderData> orderData) throws Exception {
+                    adapterMyTableList.updateList((ArrayList<OrderItemsItem>) orderData.get(0).getOrderItems());
+                }
+            });
     }
 
     public void listenerKitchen() {
@@ -165,6 +165,48 @@ public class FoodListActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapterMyTableList = new AdapterMyTableList(items);
         recyclerView.setAdapter(adapterMyTableList);
+        adapterMyTableList.setMyRemoveListiner(new AdapterMyTableList.MyRemoveListiner() {
+            @Override
+            public void onRemoveItem() {
+                sendData();
+            }
+        });
+    }
+
+    public void sendData() {
+
+        Log.d(TAG, "sendData: item size" + items.size());
+
+        OrderData orderData = new OrderData(
+                Integer.parseInt(id),
+                "2018-07-17",
+                items,
+                "2018-07-17",
+                "10",
+                1,
+                1,
+                null,
+                orderId,
+                2);
+        ApiInterface apiInterface = ApiClient.getRetrofit(this).create(ApiInterface.class);
+        Call<OrderData> call = apiInterface.sendData(orderData);
+        call.enqueue(new Callback<OrderData>() {
+            @Override
+            public void onResponse(Call<OrderData> call, Response<OrderData> response) {
+                if (response.body() != null) {
+                    Log.d(TAG, "onResponse:  yesss ");
+//                    adapterMyTableList.updateList(items);
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<OrderData> call, Throwable t) {
+                t.printStackTrace();
+
+            }
+        });
+
     }
 
 

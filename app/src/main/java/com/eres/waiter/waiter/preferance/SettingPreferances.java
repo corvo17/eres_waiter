@@ -49,7 +49,7 @@ public class SettingPreferances {
     }
 
     public String getUrl() {
-        return pref.getString("URL", "http://192.186.0.2:9000");
+        return pref.getString("URL", "http://192.168.0.120:9000/");
     }
 
     public void setIme(String ime) {
@@ -59,7 +59,7 @@ public class SettingPreferances {
     }
 
     public String getIme() {
-        return pref.getString("IME", "0");
+        return pref.getString("IME", "356316064051832");
     }
 
     public void setHallId(int id) {

@@ -34,7 +34,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="4dp"
-        android:background="@drawable/back_button_green"
+        android:background="#2ad408"
         android:text="Оформить заказ"
         android:textColor="#ffffff"
         app:layout_constraintBottom_toTopOf="@id/clr" />

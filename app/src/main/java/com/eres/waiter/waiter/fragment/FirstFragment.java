@@ -78,6 +78,7 @@ public class FirstFragment extends Fragment {
         loadDataApi();
         BottomNavigationView navigation = view.findViewById(R.id.navigation1);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+
         Fragment fragment = getMyItem(0);
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
         transaction.replace(R.id.cont, fragment);

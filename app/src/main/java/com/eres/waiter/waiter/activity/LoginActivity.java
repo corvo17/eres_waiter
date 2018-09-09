@@ -121,7 +121,7 @@ public class LoginActivity extends AppCompatActivity {
         if (!(ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED)) {
             Toast.makeText(this, "" + telephonyManager.getDeviceId(), Toast.LENGTH_SHORT).show();
             preferances.setIme(telephonyManager.getDeviceId() + "");
-
+// TODO: 07.09.2018 preferenseni uchir  
         }
         button = findViewById(R.id.open);
         button.setOnClickListener(v -> {
@@ -295,18 +295,9 @@ public class LoginActivity extends AppCompatActivity {
                         e.printStackTrace();
                     }
 
-                    // 50ms Timeout for the "ping"
-//                    try {
-//
-//                        boolean a = pingAddr.isReachable(iFace, 200, 50);
-//                        if (a) {
-                            isServer(addr);
+                    isServer(addr);
 
-                        }
-//                    } catch (IOException e) {
-//                        e.printStackTrace();
-//                    }
-//                }
+                }
 
             }
         }).start();

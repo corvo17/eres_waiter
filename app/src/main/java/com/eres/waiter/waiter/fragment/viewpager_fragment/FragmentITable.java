@@ -10,32 +10,18 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.widget.ImageView;
 
 import com.eres.waiter.waiter.R;
 import com.eres.waiter.waiter.adapters.AdapterITable;
 import com.eres.waiter.waiter.app.App;
-import com.eres.waiter.waiter.model.Data;
 import com.eres.waiter.waiter.model.IAmTables;
 import com.eres.waiter.waiter.model.singelton.DataSingelton;
-import com.eres.waiter.waiter.retrofit.ApiClient;
-import com.eres.waiter.waiter.retrofit.ApiInterface;
-import com.eres.waiter.waiter.server.NotificationData;
-import com.labo.kaji.fragmentanimations.CubeAnimation;
-import com.labo.kaji.fragmentanimations.MoveAnimation;
-
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
+import com.eres.waiter.waiter.model.test.NotificationEventAlarm;
 
 import java.util.ArrayList;
 
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class FragmentITable extends Fragment {
     private RecyclerView recyclerView;
@@ -53,7 +39,6 @@ public class FragmentITable extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
         View view = inflater.inflate(R.layout.i_table_layout, container, false);
         recyclerView = view.findViewById(R.id.rec_layout_itable);
         loadData();
@@ -61,12 +46,9 @@ public class FragmentITable extends Fragment {
     }
 
     public void loadRecycler() {
-
-
         adapterITable = new AdapterITable(iAmTabless);
         recyclerView.setAdapter(adapterITable);
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 4));
-
     }
 
     @Override
@@ -76,28 +58,64 @@ public class FragmentITable extends Fragment {
     }
 
     private void loadData() {
+        Log.d(TAG, "notifyData: size " + DataSingelton.eventNotifAlarm.size());
         disposable = App.getApp().getAllIAmTables().subscribe(new Consumer<ArrayList<IAmTables>>() {
             @Override
-            public void accept(ArrayList<IAmTables> iAmTables) throws Exception {
-                iAmTabless = iAmTables;
-                DataSingelton.iAmTables.clear();
-                for (IAmTables table : iAmTables) {
-                    for (Integer integer : DataSingelton.eventTables) {
-                        Log.d(TAG, "Event Table Id " + integer);
-                        if (table.getId() == integer.intValue()) {
-                            Log.d(TAG, "table Id: " + table.getId());
-                            table.setType(true);
+            public void accept(ArrayList<IAmTables> iAmTables1) throws Exception {
+                iAmTabless = iAmTables1;
+                for (IAmTables table : iAmTabless) {
+                    table.setType(-1);
+                    for (NotificationEventAlarm eventAlarm : DataSingelton.eventNotifAlarm) {
+                        if (table.getId() == eventAlarm.getId()) {
+                            Log.d("TEST_EVENT1", "table Id: " + table.getId() + " type ==" + eventAlarm.getNotifType());
+                            table.setType(eventAlarm.getNotifType());
                         }
                     }
                 }
-                DataSingelton.iAmTables.addAll(iAmTables);
-
-                Log.d(TAG, "MY TABLE size : " + iAmTables.size());
+                DataSingelton.iAmTables.clear();
+                DataSingelton.iAmTables.addAll(iAmTabless);
+                Log.d(TAG, "MY TABLE size : " + iAmTabless.size());
                 loadRecycler();
             }
         });
 
+
     }
 
+    public void notifyData() {
 
+        disposable = App.getApp().getAllIAmTables().subscribe(new Consumer<ArrayList<IAmTables>>() {
+            @Override
+            public void accept(ArrayList<IAmTables> iAmTables1) throws Exception {
+                if (iAmTabless != null) {
+                    iAmTabless.clear();
+                }
+                iAmTabless = iAmTables1;
+                for (IAmTables table : iAmTabless) {
+
+                    table.setType(-1);
+                    for (NotificationEventAlarm eventAlarm : DataSingelton.eventNotifAlarm) {
+                        int k = 0;
+                        if (table.getId() == eventAlarm.getId()) {
+                            Log.d(TAG, k++ + "table Id: " + table.getId() + "== eventID = " + eventAlarm.getId() + " type ==" + eventAlarm.getNotifType());
+                            table.setType(eventAlarm.getNotifType());
+                        }
+                    }
+                }
+                DataSingelton.iAmTables.clear();
+                DataSingelton.iAmTables.addAll(iAmTabless);
+                adapterITable.notifyDataSetChanged();
+                Log.d(TAG, "MY TABLE size : " + iAmTabless.size());
+            }
+        });
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (adapterITable != null)
+            notifyData();
+
+        Log.d(TAG, "notiife size on resume : " + DataSingelton.eventNotifAlarm.size() + " === data size ==== " + DataSingelton.iAmTables.size());
+    }
 }

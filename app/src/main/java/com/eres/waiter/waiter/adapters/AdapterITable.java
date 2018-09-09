@@ -1,8 +1,10 @@
 package com.eres.waiter.waiter.adapters;
 
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -15,8 +17,10 @@ import com.eres.waiter.waiter.R;
 import com.eres.waiter.waiter.activity.FoodListActivity;
 import com.eres.waiter.waiter.app.App;
 import com.eres.waiter.waiter.model.IAmTables;
+import com.eres.waiter.waiter.model.enums.NotificationTypees;
 import com.eres.waiter.waiter.model.events.EventIAmTableChange;
 import com.eres.waiter.waiter.model.singelton.DataSingelton;
+import com.eres.waiter.waiter.model.test.NotificationEventAlarm;
 import com.eres.waiter.waiter.server.NotificationData;
 
 import org.greenrobot.eventbus.EventBus;
@@ -31,30 +35,24 @@ public class AdapterITable extends RecyclerView.Adapter<AdapterITable.MyViewHold
     public AdapterITable(ArrayList<IAmTables> list1) {
         list = list1;
 
+
     }
 
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_first_rec, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_itables_rec, parent, false);
         return new MyViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         holder.number.setText(list.get(position).getName());
-        if (list.get(position).isType()) {
-            holder.event.setVisibility(View.VISIBLE);
-        } else
-            holder.event.setVisibility(View.GONE);
+        loadEventITableState(holder, position);
         holder.imageView.setOnClickListener(v -> {
-
             Intent intent = new Intent(holder.number.getContext(), FoodListActivity.class);
-            if (list.get(position).isType()) {
+            if (list.get(position).isType() != -1) {
                 removeEventTableId(list.get(position).getId());
-                App.getApp().removeMessage(list.get(position).getNotificationData());
-                list.get(position).setType(false);
-                notifyDataSetChanged();
             }
             Bundle bundle = new Bundle();
             bundle.putString("ID", list.get(position).getId() + "");
@@ -63,17 +61,28 @@ public class AdapterITable extends RecyclerView.Adapter<AdapterITable.MyViewHold
         });
     }
 
-    private void removeEventTableId(int id) {
-        for (int i = 0; i < DataSingelton.eventTables.size(); i++) {
-            Log.d("TEST_EVENT", DataSingelton.eventTables.get(i).toString() + "removeEventTableId: " + id);
-            if (id == DataSingelton.eventTables.get(i)) {
-                Log.d("TEST_EVENT", "removeEventTableId: removed");
-                DataSingelton.eventTables.remove(i);
+    private void loadEventITableState(MyViewHolder holder, int position) {
+        int a = list.get(position).isType();
+        int res = R.drawable.itables_buttom;
+        if (NotificationTypees.CompleteKitchen.ordinal() == a) {
+            res = R.drawable.back_button_green;
+        } else if (NotificationTypees.OrderProblemsInKithen.ordinal() == a)
+            res = R.drawable.back_button_red;
+        else if (NotificationTypees.OrderAcceptedInKitchen.ordinal() == a)
+            res = R.drawable.back_button_yellow;
+        holder.event.setBackgroundResource(res);
+    }
 
-                if (DataSingelton.eventTables.size() == 0) {
-                    Log.d("TEST_EVENT", "Clear bar notif ");
+    private void removeEventTableId(int id) {
+        for (NotificationEventAlarm eventAlarm : DataSingelton.eventNotifAlarm) {
+            if (id == eventAlarm.getId()) {
+                Log.d("TEST_EVENT1", "removeEventTableId: removed");
+                DataSingelton.eventNotifAlarm.remove(eventAlarm);
+                if (DataSingelton.eventNotifAlarm.size() == 0) {
+                    Log.d("TEST_EVENT1", "Clear bar notif ");
                     EventBus.getDefault().post(new EventIAmTableChange(false));
                 }
+                break;
             }
         }
     }
@@ -81,12 +90,12 @@ public class AdapterITable extends RecyclerView.Adapter<AdapterITable.MyViewHold
 
     @Override
     public int getItemCount() {
-        return list.size();
+        return list != null ? list.size() : 0;
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder {
         TextView number;
-        ImageView imageView;
+        ConstraintLayout imageView;
         View event;
 
         public MyViewHolder(View itemView) {

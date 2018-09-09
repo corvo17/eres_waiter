@@ -15,6 +15,7 @@ import com.eres.waiter.waiter.model.TablesItem;
 import com.eres.waiter.waiter.model.events.EventTable;
 import com.eres.waiter.waiter.model.test.DataAddList;
 import com.eres.waiter.waiter.model.test.IEventTable;
+import com.eres.waiter.waiter.model.test.NotificationEventAlarm;
 import com.eres.waiter.waiter.retrofit.ApiClient;
 import com.eres.waiter.waiter.retrofit.ApiInterface;
 import com.eres.waiter.waiter.server.TableData;
@@ -53,7 +54,7 @@ public class DataSingelton {
     private static final String TAG = "DataSingelton";
     ApiInterface apiInterface;
     public static ObservableCollection<ProductsItem> searchItems;
-    public static ArrayList<Integer> eventTables;
+    public static HashSet<NotificationEventAlarm> eventNotifAlarm;
     public static ArrayList<String> strings;
 
     public ObservableCollection<Hall> getHalls() {
@@ -130,7 +131,7 @@ public class DataSingelton {
         armoredTables = new ArrayList<>();
         iAmTables = new ArrayList<>();
         strings = new ArrayList<>();
-        eventTables = new ArrayList<>();
+        eventNotifAlarm = new HashSet<>();
     }
 
 

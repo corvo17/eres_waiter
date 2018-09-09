@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="320dp"
-    android:layout_height="400dp"
+    android:layout_height="410dp"
     android:padding="10dp">
 
     <TextView
@@ -10,7 +11,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
+        android:maxLength="18"
         android:text="Специальные объекты0"
+        android:textColor="@color/colorPrimary"
+        android:textSize="24sp"
         app:layout_constraintTop_toTopOf="parent" />
 
     <android.support.v7.widget.RecyclerView
@@ -22,8 +26,10 @@
         app:layout_constraintTop_toBottomOf="@id/title" />
 
     <EditText
+        android:layout_marginTop="10dp"
         android:id="@+id/comment"
         android:layout_width="0dp"
+        android:text=""
         android:layout_height="wrap_content"
         android:hint="Комментарии"
         android:textSize="24sp"
@@ -32,11 +38,13 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/rec_chack" />
 
+
     <Button
         android:id="@+id/ok"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/back_button_green"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/background_menu_item"
         android:padding="4dp"
         android:text="OK"
         android:textColor="#ffffff"

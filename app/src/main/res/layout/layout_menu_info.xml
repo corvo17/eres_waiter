@@ -9,6 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
+
         android:text="@string/description"
         android:textColor="@color/colorPrimary"
         android:textSize="30sp"
@@ -36,41 +37,49 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text=""
+                android:textColor="#000000"
                 android:textSize="18sp" />
         </ScrollView>
 
-        <TextView
 
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="Ingredients"
-            android:textColor="@color/colorPrimary"
-            android:textSize="30sp" />
-
-        <ScrollView
-            android:id="@+id/scrol2"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:padding="4dp">
-
-            <TextView
-                android:id="@+id/ingredient"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text=""
-                android:textSize="18sp" />
-        </ScrollView>
     </LinearLayout>
 
     <Button
-        android:id="@+id/ok"
-        android:layout_width="200dp"
+        android:id="@+id/ret"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
-        android:background="@drawable/button_background"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="2dp"
+        android:background="@drawable/back_button"
+        android:text="Состав"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toTopOf="@id/ok"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/desc" />
+
+    <Button
+        android:id="@+id/desc"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="2dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/back_button"
+        android:text="@string/description"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toTopOf="@id/ok"
+        app:layout_constraintLeft_toRightOf="@id/ret"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <Button
+        android:id="@+id/ok"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/background_menu_item"
         android:text="ok"
         android:textColor="#ffffff"
         android:textSize="20sp"

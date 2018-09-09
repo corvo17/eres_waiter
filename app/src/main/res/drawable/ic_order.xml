@@ -1,0 +1,10 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="103dp"
+    android:height="102dp"
+    android:viewportWidth="103"
+    android:viewportHeight="102">
+    <path
+        android:fillColor="#fff"
+        android:name="Прямоугольник 1"
+        android:pathData="m56.3 100.16 -0.41 -0.15 -23.88 -23.89 7.11 -7.12 16.94 16.95 39.25 -39.19 7.24 7.22 -46.25 46.18zm10.22 -44.48h-54.34v-4.89h54.34v4.89zm-54.34 -24.89h54.34v4.89h-54.34v-4.89zm54.34 14.89h-54.34v-4.89h54.34v4.89zm7.09 -27.81h-7.09v3.88h-2.45h-2.45h-44.55h-2.45h-2.45v-3.88h-7.09v79.03h43.84l4.46 4.89h-48.29h-4.89v-4.89v-79.03v-4.89h4.89h7.09v-1.22v-4.89h4.89h6.62v-1.43v-4.89h4.89h21.52h4.89v4.89v1.43h6.62h4.89v4.89v1.22h7.09h4.89v4.89v39.84l-4.89 4.76v-44.6zm-11.98 -6.12h-6.62h-4.89v-6.33h-21.52v6.33h-4.89h-6.62v5.11h44.55v-5.11z" />
+</vector>

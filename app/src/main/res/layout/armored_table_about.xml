@@ -3,96 +3,59 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/backk">
+    android:background="@drawable/armored_back">
 
-    <com.mikhaellopez.circularimageview.CircularImageView
-        android:id="@+id/imgColor"
-        android:layout_width="140dp"
-        android:layout_height="140dp"
-        android:layout_marginTop="30dp"
-        android:src="@drawable/img"
-        app:civ_border="true"
-        app:civ_border_width="1dp"
-        app:civ_shadow="true"
-        app:civ_shadow_color="#52dcd4"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="100dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
         android:id="@+id/table_number"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="3dp"
         android:gravity="center_vertical"
-        android:text="0"
+        android:text="10"
         android:textColor="#ffffff"
-        android:textSize="42sp"
-        app:layout_constraintBottom_toBottomOf="@id/imgColor"
-        app:layout_constraintLeft_toLeftOf="@id/imgColor"
-        app:layout_constraintRight_toRightOf="@id/imgColor"
-        app:layout_constraintTop_toTopOf="@id/imgColor"
+        android:textSize="72sp"
+
 
         />
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="50dp"
-        android:background="@drawable/background_about"
-        android:paddingLeft="40dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/imgColor">
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintBottom_toTopOf="@id/openList">
 
         <LinearLayout
             android:id="@+id/l1"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="20dp"
             android:gravity="center_vertical"
             android:orientation="horizontal"
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/c_icon" />
+                android:scaleType="fitXY"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/users" />
 
             <TextView
-                android:id="@+id/date"
+
+                android:layout_marginLeft="10dp"
+                android:id="@+id/name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
-                android:text="28.08.18 20:30"
-                android:textColor="#49c4bd"
-                android:textSize="20sp"
-
-                />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/l2"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="20dp"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            app:layout_constraintTop_toBottomOf="@id/l1">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/phone" />
-
-            <TextView
-                android:id="@+id/phone"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:text="+998933336360"
-                android:textColor="#49c4bd"
-                android:textSize="22sp"
+                android:text="Jabborov Sherzod"
+                android:textColor="@color/waeit"
+                android:textSize="24sp"
 
                 />
 
@@ -102,42 +65,73 @@
             android:id="@+id/l3"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="14dp"
             android:gravity="center_vertical"
             android:orientation="horizontal"
             app:layout_constraintTop_toBottomOf="@id/l2">
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/user" />
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                app:srcCompat="@drawable/ic_access_time_black_24dp" />
 
             <TextView
-                android:id="@+id/name"
+                android:layout_marginLeft="10dp"
+                android:id="@+id/date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
-                android:text="Jabborov Sherzod"
-                android:textColor="#49c4bd"
-                android:textSize="22sp"
+                android:text="20:30"
+                android:textColor="@color/waeit"
+                android:textSize="24sp"
 
                 />
 
         </LinearLayout>
 
-        <Button
+        <LinearLayout
+            android:id="@+id/l2"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="14dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@id/l1">
 
-            android:id="@+id/openList"
-            android:layout_width="240dp"
-            android:layout_height="60dp"
-            android:layout_marginRight="10dp"
-            android:background="@drawable/button_background"
-            android:text="открыть счет"
-            android:textColor="#ffffff"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/l3" />
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                app:srcCompat="@drawable/ic_cal" />
+
+            <TextView
+                android:layout_marginLeft="10dp"
+                android:id="@+id/phone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:text="28.08.2018"
+                android:textColor="@color/waeit"
+                android:textSize="24sp"
+
+                />
+
+        </LinearLayout>
+
 
     </android.support.constraint.ConstraintLayout>
+
+    <Button
+
+        android:id="@+id/openList"
+        android:layout_width="240dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="20dp"
+
+        android:background="@drawable/button_background"
+        android:text="открыть счет"
+        android:textColor="@color/colorPrimary"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
 </android.support.constraint.ConstraintLayout>

@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.eres.waiter.waiter.R;
@@ -21,9 +22,8 @@ public class AdapterArmored extends RecyclerView.Adapter<AdapterArmored.MyViewHo
     private ArrayList<ArmoredTables> list;
 
     public AdapterArmored(ArrayList<ArmoredTables> list1) {
-        list = new ArrayList<>();
-        list.clear();
-        list.addAll(list1);
+
+        list = list1;
 
     }
 
@@ -63,11 +63,11 @@ public class AdapterArmored extends RecyclerView.Adapter<AdapterArmored.MyViewHo
 
     class MyViewHolder extends RecyclerView.ViewHolder {
         TextView number;
-        ImageView imageView;
+        LinearLayout imageView;
 
         public MyViewHolder(View itemView) {
             super(itemView);
-            imageView = itemView.findViewById(R.id.mm);
+            imageView = itemView.findViewById(R.id.item_liner);
             number = itemView.findViewById(R.id.table);
         }
     }

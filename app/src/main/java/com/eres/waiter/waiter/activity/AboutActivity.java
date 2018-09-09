@@ -49,6 +49,7 @@ public class AboutActivity extends AppCompatActivity {
                 }
             }
             SettingPreferances.getSharedPreferance(null).setTableId(bundle.getInt("ID"));
+            SettingPreferances.preferances.setOrderId(0);
 // TODO: 09.08.2018 share praferance ga tableId ni berish kerak
             this.startActivity(new Intent(this, MyMenuActivity.class));
             this.finish();

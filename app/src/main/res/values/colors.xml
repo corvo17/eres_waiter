@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#00B980</color>
-    <color name="colorPrimaryDark">#0C8661</color>
+    <color name="colorPrimary">#23caa1</color>
+    <color name="colorPrLite">#2be7b9</color>
+    <color name="colorPrimaryDark">#20b893</color>
+    <color name="colorStopList">#ff6666</color>
     <color name="colorAccent">#FF4081</color>
     <color name="myGreen">#01c936</color>
     <color name="myColor">#49CDA4</color>
+    <color name="waeit">#ffffff</color>
 </resources>
