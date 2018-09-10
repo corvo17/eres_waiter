@@ -20,7 +20,6 @@ import com.eres.waiter.waiter.model.TablesItem;
 import com.eres.waiter.waiter.model.events.EventMessageAdapter;
 import com.eres.waiter.waiter.model.events.EventTable;
 import com.eres.waiter.waiter.model.singelton.DataSingelton;
-import com.eres.waiter.waiter.mvvm.repository.viewmodel.ItemViewModel;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -49,7 +48,7 @@ public class FragmentTables extends Fragment {
         recyclerView = view.findViewById(R.id.rec_tables);
         int i = getArguments().getInt("DATA");
         page = i;
-        items = DataSingelton.getEmptyTables().get(i).getTables();
+        items = DataSingelton.singelton.getHalls().get(i).getTables();
         Log.d("TEST_N", "onCreateView: begin table size == " + items.size());
         adapterEmpty = new AdapterEmpty(items);
         adapterEmpty.setMyInterfaceItem(new AdapterEmpty.MyInterfaceItem() {

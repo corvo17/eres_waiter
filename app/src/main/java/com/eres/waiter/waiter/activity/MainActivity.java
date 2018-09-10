@@ -14,6 +14,7 @@ import com.eres.waiter.waiter.fragment.FirstFragment;
 import com.eres.waiter.waiter.interfaces.MyTestInterface;
 import com.eres.waiter.waiter.model.IAmTables;
 import com.eres.waiter.waiter.model.Table;
+import com.eres.waiter.waiter.model.TablesItem;
 import com.eres.waiter.waiter.model.enums.NotificationTypees;
 import com.eres.waiter.waiter.model.events.EventIAmTableChange;
 import com.eres.waiter.waiter.model.events.EventOnBack;
@@ -97,7 +98,7 @@ public class MainActivity extends AppCompatActivity implements MyTestInterface {
 
         Log.d("TAG_R", "loadLocalServer: " + App.getMessage().size());
         ObservableCollection<NotificationData> noteAll = App.getMessage();
-        com.eres.waiter.waiter.viewpager.service.WebServer.messages.setCollectionChangeListener(
+        App.message.setCollectionChangeListener(
                 new ObservableCollection.CollectionChangeListener() {
                     @Override
                     public void onCollectionChange(ObservableCollection.NotifyCollectionChangedAction action, Object obj, long position) {
@@ -123,7 +124,7 @@ public class MainActivity extends AppCompatActivity implements MyTestInterface {
                                 if (a == 15) {
                                     first:
                                     for (Hall hall : DataSingelton.singelton.getHalls()) {
-                                        for (Table table : hall.getTables()) {
+                                        for (TablesItem table : hall.getTables()) {
                                             if (table.getId() == note.getTableId()) {
                                                 runOnUiThread(new Runnable() {
                                                     @Override

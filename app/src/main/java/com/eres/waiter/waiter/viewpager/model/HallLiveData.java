@@ -27,15 +27,15 @@ public class HallLiveData extends LiveData<ArrayList<Hall>> {
     }
     private void getData()
     {
-        disposable =
-                App.getApp().getAllTables()
-                        .subscribe(new Consumer<ArrayList<Hall>>() {
-                            @Override
-                            public void accept(ArrayList<Hall> _halls) throws Exception {
-
-                                setValue(_halls);
-                            }
-                        });
+//        disposable =
+//                App.getApp().getAllTables()
+//                        .subscribe(new Consumer<ArrayList<Hall>>() {
+//                            @Override
+//                            public void accept(ArrayList<Hall> _halls) throws Exception {
+//
+//                                setValue(_halls);
+//                            }
+//                        });
 
     }
     @Override

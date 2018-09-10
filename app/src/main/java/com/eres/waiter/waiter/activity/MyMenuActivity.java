@@ -1,23 +1,13 @@
 package com.eres.waiter.waiter.activity;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.MenuItem;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.eres.waiter.waiter.R;
 import com.eres.waiter.waiter.fragment.FragmentMenu;
-import com.eres.waiter.waiter.model.enums.NotificationTypees;
 import com.eres.waiter.waiter.model.events.EventOnBack;
-import com.eres.waiter.waiter.model.singelton.DataSingelton;
-import com.eres.waiter.waiter.server.NotificationData;
-import com.eres.waiter.waiter.server.WebServer;
-import com.eres.waiter.waiter.viewpager.service.ObservableArrayBlockingQueue;
 
 import org.greenrobot.eventbus.EventBus;
 

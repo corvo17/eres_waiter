@@ -49,7 +49,7 @@ public class AdapterArmored extends RecyclerView.Adapter<AdapterArmored.MyViewHo
             Intent intent = new Intent(holder.number.getContext(), AboutActivity.class);
             intent.putExtras(bundle);
 
-            ((AppCompatActivity) holder.number.getContext()).startActivity(intent);
+            holder.number.getContext().startActivity(intent);
         });
 
 

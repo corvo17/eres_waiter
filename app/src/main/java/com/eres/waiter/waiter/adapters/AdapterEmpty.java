@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.eres.waiter.waiter.R;
@@ -25,6 +26,7 @@ import java.util.List;
 public class AdapterEmpty extends RecyclerView.Adapter<AdapterEmpty.MyViewHolder> {
     List<TablesItem> strings;
     private MyInterfaceItem myInterfaceItem;
+
     public void setMyInterfaceItem(MyInterfaceItem myInterfaceItem) {
         this.myInterfaceItem = myInterfaceItem;
     }
@@ -78,12 +80,12 @@ public class AdapterEmpty extends RecyclerView.Adapter<AdapterEmpty.MyViewHolder
 
     class MyViewHolder extends RecyclerView.ViewHolder {
         private TextView textView;
-        private ImageView view;
+        private LinearLayout view;
 
         public MyViewHolder(View itemView) {
             super(itemView);
             textView = itemView.findViewById(R.id.table);
-            view = itemView.findViewById(R.id.mm);
+            view = itemView.findViewById(R.id.item_liner);
         }
     }
 }

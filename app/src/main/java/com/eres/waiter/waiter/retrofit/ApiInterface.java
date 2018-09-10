@@ -31,6 +31,9 @@ public interface ApiInterface {
     @GET("api/tables")
     Single<ObservableCollection<Hall>> getAllTables();
 
+//    @GET("api/tables")
+//    Call<ObservableCollection<Hall>> getAllTables();
+
     @GET("api/tables/mytables")
     Single<ArrayList<IAmTables>> getAllIAmTables();
 

@@ -21,9 +21,6 @@ import com.eres.waiter.waiter.model.events.EventMessageAdapter;
 import com.eres.waiter.waiter.model.events.EventMessageSendFood;
 import com.eres.waiter.waiter.model.events.EventTable;
 import com.eres.waiter.waiter.model.singelton.DataSingelton;
-import com.eres.waiter.waiter.mvvm.repository.viewmodel.TableViewModel;
-import com.eres.waiter.waiter.retrofit.ApiClient;
-import com.eres.waiter.waiter.retrofit.ApiInterface;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;

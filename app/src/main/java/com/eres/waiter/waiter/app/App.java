@@ -1,12 +1,10 @@
 package com.eres.waiter.waiter.app;
 
 import android.app.Application;
-import android.util.Log;
 
 import com.eres.waiter.waiter.model.IAmTables;
 import com.eres.waiter.waiter.model.OrderData;
 import com.eres.waiter.waiter.model.singelton.DataSingelton;
-import com.eres.waiter.waiter.preferance.SettingPreferances;
 import com.eres.waiter.waiter.retrofit.ApiClient;
 import com.eres.waiter.waiter.retrofit.ApiInterface;
 import com.eres.waiter.waiter.server.NotificationData;
@@ -21,8 +19,6 @@ import java.util.ArrayList;
 
 import io.reactivex.Single;
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
 public class App extends Application {
@@ -72,16 +68,16 @@ public class App extends Application {
             e.printStackTrace();
         }
     }
-
-    public void removeMessage(int id, int type) {
-        int q = type;
-        for (NotificationData data : message) {
-            if (data.getTableId() == id && q == data.getNotificationTypeId()) {
-                message.remove(data);
-            }
-        }
-        Log.d("TEST_EVENT1", "removeMessage: " + message.size());
-    }
+//
+//    public void removeMessage(int id, int type) {
+//        int q = type;
+//        for (NotificationData data : message) {
+//            if (data.getTableId() == id && q == data.getNotificationTypeId()) {
+//                message.remove(data);
+//            }
+//        }
+//        Log.d("TEST_EVENT1", "removeMessage: " + message.size());
+//    }
 
     public void updateData() {
         apiInterface = ApiClient.getRetrofit(this).create(ApiInterface.class);

@@ -2,20 +2,21 @@ package com.eres.waiter.waiter.viewpager.model;
 
 
 import com.eres.waiter.waiter.model.Table;
+import com.eres.waiter.waiter.model.TablesItem;
 import com.eres.waiter.waiter.viewpager.helper.ObservableCollection;
 
-enum HallState { Working, Closed , Armored }
-public class Hall
-{
-    public Hall()
-    {
-        tables = new ObservableCollection<Table>();
+enum HallState {Working, Closed, Armored}
+
+public class Hall {
+    public Hall() {
+        tables = new ObservableCollection<>();
     }
+
     private long id;
     private String name;
     private String description;
     private long managerId;
-    private ObservableCollection<Table> tables;
+    private ObservableCollection<TablesItem> tables;
     private HallState hallState;
 
     public long getId() {
@@ -50,11 +51,11 @@ public class Hall
         this.managerId = managerId;
     }
 
-    public ObservableCollection<com.eres.waiter.waiter.model.Table> getTables() {
+    public ObservableCollection<TablesItem> getTables() {
         return tables;
     }
 
-    public void setTables(ObservableCollection<Table> tables) {
+    public void setTables(ObservableCollection<TablesItem> tables) {
         this.tables = tables;
     }
 

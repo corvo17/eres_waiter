@@ -17,7 +17,9 @@ import android.view.ViewGroup;
 
 import com.eres.waiter.waiter.R;
 import com.eres.waiter.waiter.app.App;
+import com.eres.waiter.waiter.fragment.viewpager_fragment.FragmentTables;
 import com.eres.waiter.waiter.model.Table;
+import com.eres.waiter.waiter.model.TablesItem;
 import com.eres.waiter.waiter.preferance.SettingPreferances;
 import com.eres.waiter.waiter.viewpager.helper.ObservableCollection;
 import com.eres.waiter.waiter.viewpager.model.Hall;
@@ -40,7 +42,7 @@ public class AllTablesFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         setRetainInstance(true);
         for (Fragment fragment : getFragmentManager().getFragments()) {
-            if (fragment instanceof TablesFragment) {
+            if (fragment instanceof FragmentTables) {
                 getFragmentManager().beginTransaction().remove(fragment).commit();
                 Log.i("SSS", "onCreate: remove ");
 
@@ -126,7 +128,7 @@ public class AllTablesFragment extends Fragment {
     }
 
 
-    public ObservableCollection<Table> getTables(long hallId) {
+    public ObservableCollection<TablesItem> getTables(long hallId) {
         ObservableCollection<Hall> halls = data.getValue();
         for (int ci = 0; ci < halls.size(); ci++) {
             Hall hall = halls.get(ci);
@@ -146,7 +148,7 @@ public class AllTablesFragment extends Fragment {
 
         @Override
         public Fragment getItem(int position) {
-            return TablesFragment.newInstance(position);
+            return FragmentTables.getInstance(position);
         }
 
         @Override

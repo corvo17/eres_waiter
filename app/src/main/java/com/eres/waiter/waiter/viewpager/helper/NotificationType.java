@@ -1,6 +1,6 @@
 package com.eres.waiter.waiter.viewpager.helper;
 
-public enum NotificationTypees
+public enum NotificationType
 {
     Unknown,
     ERESStarted,// Система ERES стартовала !

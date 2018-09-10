@@ -3,37 +3,23 @@ package com.eres.waiter.waiter.model.singelton;
 import android.content.Context;
 import android.util.Log;
 
-import com.eres.waiter.waiter.app.App;
 import com.eres.waiter.waiter.model.ArmoredTables;
 import com.eres.waiter.waiter.model.DataMenu;
 import com.eres.waiter.waiter.model.EmptyTable;
 import com.eres.waiter.waiter.model.IAmTables;
 import com.eres.waiter.waiter.model.OrderItemsItem;
 import com.eres.waiter.waiter.model.ProductsItem;
-import com.eres.waiter.waiter.model.Table;
 import com.eres.waiter.waiter.model.TablesItem;
-import com.eres.waiter.waiter.model.events.EventTable;
 import com.eres.waiter.waiter.model.test.DataAddList;
-import com.eres.waiter.waiter.model.test.IEventTable;
 import com.eres.waiter.waiter.model.test.NotificationEventAlarm;
 import com.eres.waiter.waiter.retrofit.ApiClient;
 import com.eres.waiter.waiter.retrofit.ApiInterface;
-import com.eres.waiter.waiter.server.TableData;
 import com.eres.waiter.waiter.viewpager.helper.ObservableCollection;
 import com.eres.waiter.waiter.viewpager.model.Hall;
 
-import org.greenrobot.eventbus.EventBus;
-
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 
-import io.reactivex.Scheduler;
-import io.reactivex.Single;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Consumer;
-import io.reactivex.schedulers.Schedulers;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -75,12 +61,6 @@ public class DataSingelton {
 
     private static ArrayList<OrderItemsItem> myOrders;
 
-    public void addTable(TableData item) {
-//        getEmptyTables().get(item.getHallId()).getTables().add(item);
-//        EventBus.getDefault().post(new EventTable(item.getId()));
-
-
-    }
 
     public static ArrayList<DataAddList> getProducts() {
         return productsItems;
@@ -153,22 +133,6 @@ public class DataSingelton {
 
     }
 
-    public void removeEmptyTable(TableData item) {
-        int id = item.getId();
-        Log.d("TEST_N", "removeEmptyTable: " + id);
-        for (int i = 0; i < getEmptyTables().size(); i++) {
-            for (int i1 = 0; i1 < getEmptyTables().get(i).getTables().size(); i1++) {
-                if (getEmptyTables().get(i).getTables().get(i1).getId() == id) {
-                    getEmptyTables().get(i).getTables().remove(i1);
-                    Log.d("TEST_N", "addImTableData: " + i1 + "==" + id);
-                    EventBus.getDefault().post(new EventTable(item.getHallId()));
-                    break;
-                }
-            }
-        }
-
-
-    }
 
     public static DataSingelton getInstance(Context context) {
         if (singelton == null) {
@@ -192,6 +156,7 @@ public class DataSingelton {
 
             @Override
             public void onFailure(Call<ArrayList<ArmoredTables>> call, Throwable t) {
+                Log.d(TAG, "onFailure:  Armored ");
                 loadArmoredTable = false;
             }
         });
@@ -216,6 +181,8 @@ public class DataSingelton {
         });
 
     }
+
+
 
     public void loadEmptyTable() {
         emptyTables = new ArrayList<>();
@@ -254,6 +221,7 @@ public class DataSingelton {
 
             @Override
             public void onFailure(Call<ArrayList<DataMenu>> call, Throwable t) {
+                Log.d(TAG, "onFailure: DataMenu");
                 t.printStackTrace();
             }
         });

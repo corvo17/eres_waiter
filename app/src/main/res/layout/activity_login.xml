@@ -20,6 +20,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
+        android:background="@drawable/back_button_press"
         android:id="@+id/open"
         android:layout_width="80dp"
         android:layout_height="80dp"

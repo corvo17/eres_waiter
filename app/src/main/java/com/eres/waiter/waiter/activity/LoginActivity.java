@@ -120,7 +120,7 @@ public class LoginActivity extends AppCompatActivity {
         TelephonyManager telephonyManager = (TelephonyManager) getSystemService(this.TELEPHONY_SERVICE);
         if (!(ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED)) {
             Toast.makeText(this, "" + telephonyManager.getDeviceId(), Toast.LENGTH_SHORT).show();
-            preferances.setIme(telephonyManager.getDeviceId() + "");
+//            preferances.setIme(telephonyManager.getDeviceId() + "");
 // TODO: 07.09.2018 preferenseni uchir  
         }
         button = findViewById(R.id.open);
@@ -150,8 +150,6 @@ public class LoginActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         if (disposable != null) {
-
-
             disposable.dispose();
         }
     }
@@ -179,6 +177,8 @@ public class LoginActivity extends AppCompatActivity {
         dataSingelton.loadArmoredTable();
         dataSingelton.loadData();
         loadHalls();
+//        dataSingelton.loadAllHall();
+
     }
 
     private void isServer(String ipS) {
@@ -260,6 +260,8 @@ public class LoginActivity extends AppCompatActivity {
 
             }
         });
+
+
     }
 
     public void searchServer() {
@@ -305,6 +307,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private void loadIAmTable() {
         disposable = App.getApp().getAllIAmTables().subscribe(new Consumer<ArrayList<IAmTables>>() {
+
             @Override
             public void accept(ArrayList<IAmTables> iAmTables) throws Exception {
                 DataSingelton.getiAmTables().clear();

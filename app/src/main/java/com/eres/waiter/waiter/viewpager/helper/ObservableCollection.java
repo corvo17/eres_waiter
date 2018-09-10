@@ -6,9 +6,11 @@ import java.util.Collection;
 import java.util.function.Predicate;
 
 public class ObservableCollection<T> extends ArrayList<T> {
+
+
     public enum NotifyCollectionChangedAction
     {
-        Add,Remove,Replace,Move,Reset,Clear
+        Add,Remove,Replace,Move,Reset, Clear, Cleard
     }
     public interface CollectionChangeListener
     {
