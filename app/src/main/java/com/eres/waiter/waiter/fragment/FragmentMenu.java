@@ -295,6 +295,7 @@ public class FragmentMenu extends Fragment {
                     EventBus.getDefault().post(new EventMessageSendFood(state));
                     Log.d(TAG, "onResponse:  yesss " + state);
 
+DataSingelton.singelton.loadITable();
                     //   Toast.makeText(getContext(), "Send Data Kitchen", Toast.LENGTH_SHORT).show();
                 }
             }

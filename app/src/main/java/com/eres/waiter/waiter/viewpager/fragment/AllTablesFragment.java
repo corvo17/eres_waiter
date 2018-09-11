@@ -86,10 +86,8 @@ public class AllTablesFragment extends Fragment {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
 //                View view1 = LayoutInflater.from(getContext()).inflate(R.layout.custum_view, container, false);
-//
 //                tab.setCustomView(view1);
 //                Log.d("TAB_TEST", "onTabSelected: " + tab.getText());
-
                 tabPos = tab.getPosition();
             }
 
@@ -100,6 +98,7 @@ public class AllTablesFragment extends Fragment {
 
             @Override
             public void onTabReselected(TabLayout.Tab tab) {
+
             }
         });
         return view;

@@ -17,7 +17,10 @@ import com.eres.waiter.waiter.retrofit.ApiInterface;
 import com.eres.waiter.waiter.viewpager.helper.ObservableCollection;
 import com.eres.waiter.waiter.viewpager.model.Hall;
 
+import org.greenrobot.eventbus.EventBus;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 
 import retrofit2.Call;
@@ -40,7 +43,7 @@ public class DataSingelton {
     private static final String TAG = "DataSingelton";
     ApiInterface apiInterface;
     public static ObservableCollection<ProductsItem> searchItems;
-    public static HashSet<NotificationEventAlarm> eventNotifAlarm;
+    public static HashMap<String, Integer> eventNotifAlarm;
     public static ArrayList<String> strings;
 
     public ObservableCollection<Hall> getHalls() {
@@ -111,7 +114,7 @@ public class DataSingelton {
         armoredTables = new ArrayList<>();
         iAmTables = new ArrayList<>();
         strings = new ArrayList<>();
-        eventNotifAlarm = new HashSet<>();
+        eventNotifAlarm = new HashMap<>();
     }
 
 
@@ -172,6 +175,7 @@ public class DataSingelton {
                     iAmTables.clear();
                     iAmTables.addAll(response.body());
                     Log.d("MY_LOG", "onResponse: " + iAmTables.size() + "==" + response.body().size());
+
                 }
             }
 
@@ -181,7 +185,6 @@ public class DataSingelton {
         });
 
     }
-
 
 
     public void loadEmptyTable() {

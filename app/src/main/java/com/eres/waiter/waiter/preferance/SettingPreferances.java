@@ -49,7 +49,7 @@ public class SettingPreferances {
     }
 
     public String getUrl() {
-        return pref.getString("URL", "http://192.168.0.120:9000/");
+        return pref.getString("URL", "http://192.168.0.106:9000/");
     }
 
     public void setIme(String ime) {

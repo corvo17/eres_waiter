@@ -176,6 +176,7 @@ public class LoginActivity extends AppCompatActivity {
         loadIAmTable();
         dataSingelton.loadArmoredTable();
         dataSingelton.loadData();
+        dataSingelton.loadITable();
         loadHalls();
 //        dataSingelton.loadAllHall();
 

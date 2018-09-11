@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity implements MyTestInterface {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        loadLocalServer();
+      //  loadLocalServer();
         FirstFragment firstFragment = new FirstFragment();
 
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
@@ -93,79 +93,10 @@ public class MainActivity extends AppCompatActivity implements MyTestInterface {
             disposable.dispose();
     }
 
-    public void loadLocalServer() {
-        ApiInterface apiInterface = ApiClient.getRetrofit(this).create(ApiInterface.class);
-
-        Log.d("TAG_R", "loadLocalServer: " + App.getMessage().size());
-        ObservableCollection<NotificationData> noteAll = App.getMessage();
-        App.message.setCollectionChangeListener(
-                new ObservableCollection.CollectionChangeListener() {
-                    @Override
-                    public void onCollectionChange(ObservableCollection.NotifyCollectionChangedAction action, Object obj, long position) {
-                        Log.d("TAG_R", "onCollectionChange: ");
-                        if (action == ObservableCollection.NotifyCollectionChangedAction.Add) {
-                            int size = noteAll.size();
-                            for (NotificationData note : noteAll) {
-
-
-                                int a = note.getNotificationTypeId();
-                                if (a == NotificationTypees.MenuChanged.ordinal()) {
-                                    DataSingelton.singelton.loadData();
-                                    noteAll.remove(note);
-                                }
-                                if (a == NotificationTypees.OrderAcceptedInKitchen.ordinal() || NotificationTypees.OrderProblemsInKithen.ordinal() == a || NotificationTypees.CompleteKitchen.ordinal() == a) {
-
-                                    Log.d("TEST_EVENT1", "Strart note event : " + note.getTableId() + " type =  " + a);
-                                    checkEventIAmTable(note.getTableId(), a);
-                                    App.message.remove(note);
-                                    // Qaysi afitsiant notifay qsa ham event ketaveradi !!!!
-                                }
-
-                                if (a == 15) {
-                                    first:
-                                    for (Hall hall : DataSingelton.singelton.getHalls()) {
-                                        for (TablesItem table : hall.getTables()) {
-                                            if (table.getId() == note.getTableId()) {
-                                                runOnUiThread(new Runnable() {
-                                                    @Override
-                                                    public void run() {
-                                                        hall.getTables().remove(table);
-                                                        noteAll.remove(note);
-                                                    }
-                                                });
-                                                break first;
-                                            }
-                                        }
-                                    }
-
-                                }
-                            }
-                        }
-                    }
-
-                }
-        );
-    }
 
     @Override
     public void send(String s) {
         Log.d("MY_LOG", "send: " + s);
     }
 
-    public void checkEventIAmTable(int id, int event) {
-        boolean a = false;
-        EventBus.getDefault().post(new EventIAmTableChange(true));
-        for (NotificationEventAlarm eventAlarm : DataSingelton.eventNotifAlarm) {
-            if (eventAlarm.getId() == id) {
-                a = true;
-                eventAlarm.setNotifType(event);
-                DataSingelton.eventNotifAlarm.add(eventAlarm);
-                break;
-            }
-        }
-
-        if (!a) {
-            DataSingelton.eventNotifAlarm.add(new NotificationEventAlarm(id, event));
-        }
-    }
 }

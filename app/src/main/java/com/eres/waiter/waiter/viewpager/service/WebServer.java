@@ -61,9 +61,12 @@ public class WebServer extends NanoHTTPD {
         try {
 
             //localM = App.gson.fromJson(bodyJson, new TypeToken<ObservableCollection<ERESNotification>>(){}.getType());
+
             localM.addAll(App.gson.fromJson(bodyJson, Notes.class).getNotes());
             Log.d("TAG_R", "serve: ");
-            App.message.addAll(localM);
+            App app =App.getApp();
+            app.loadLocalServer(App.gson.fromJson(bodyJson, Notes.class).getNotes());
+
         } catch (JsonSyntaxException ee) {
             return newFixedLengthResponse("bad request");
         }

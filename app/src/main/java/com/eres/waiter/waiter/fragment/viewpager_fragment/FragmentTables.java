@@ -18,18 +18,20 @@ import com.eres.waiter.waiter.R;
 import com.eres.waiter.waiter.adapters.AdapterEmpty;
 import com.eres.waiter.waiter.model.TablesItem;
 import com.eres.waiter.waiter.model.events.EventMessageAdapter;
+import com.eres.waiter.waiter.model.events.EventMessageRemoveTable;
 import com.eres.waiter.waiter.model.events.EventTable;
 import com.eres.waiter.waiter.model.singelton.DataSingelton;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class FragmentTables extends Fragment {
     private RecyclerView recyclerView;
-    private  AdapterEmpty adapterEmpty;
+    private AdapterEmpty adapterEmpty;
     private List<TablesItem> items;
     private String TAG = "MY_LOG";
     private int posit = 0;
@@ -65,16 +67,22 @@ public class FragmentTables extends Fragment {
 
     @Subscribe
     public void EventTable(EventTable table) {
-        if (table.getTableId() - 1 == page) {
-            Log.d("TEST_N", "Table size : " + items.size());
+//        if (table.getTableId() - 1 == page) {
+//            Log.d("TEST_N", "Table size : " + items.size());
+//
+//            adapterEmpty.updateList(items);
+//
+//            recyclerView.scrollToPosition(items.size());
+//            adapterEmpty.notifyDataSetChanged();
+////            EventBus.getDefault().post(new EventMessageAdapter(table.getTableId() - 1));
+//            myNotifyInterface.myNotify(table.getTableId() - 1);
+//        }
+    }
 
-            adapterEmpty.updateList(items);
-
-            recyclerView.scrollToPosition(items.size());
-           adapterEmpty.notifyDataSetChanged();
-//            EventBus.getDefault().post(new EventMessageAdapter(table.getTableId() - 1));
-            myNotifyInterface.myNotify(table.getTableId() - 1);
-        }
+    @Subscribe(threadMode = ThreadMode.MAIN_ORDERED)
+    public void eventRemove(EventMessageRemoveTable removeTable) {
+        adapterEmpty.updateList(items);
+        adapterEmpty.notifyDataSetChanged();
     }
 
     @Override
@@ -92,7 +100,7 @@ public class FragmentTables extends Fragment {
         return fragmentTables;
     }
 
-  public interface MyNotifyInterface {
+    public interface MyNotifyInterface {
         void myNotify(int i);
     }
 }

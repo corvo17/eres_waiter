@@ -5,19 +5,20 @@
     android:layout_height="match_parent">
 
     <android.support.design.widget.TabLayout
-        android:layout_marginTop="4dp"
         android:id="@+id/listTab"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#b500b980"
+        android:layout_height="80dp"
+        android:layout_marginTop="4dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:tabGravity="fill"
+        app:tabBackground="@drawable/back_test"
+        app:tabGravity="center"
+        app:tabIndicatorHeight="0dp"
         app:tabIndicatorColor="#ffffff"
         app:tabMode="scrollable"
-        app:tabSelectedTextColor="#ffffff"
-        app:tabTextColor="#ffffff" />
+        app:tabSelectedTextColor="@color/tabcolor"
+        app:tabTextColor="@color/tabcolor" />
 
 
     <android.support.v4.view.ViewPager
