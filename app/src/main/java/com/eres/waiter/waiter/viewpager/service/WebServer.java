@@ -26,13 +26,13 @@ public class WebServer extends NanoHTTPD {
 
     public void init() {
         localM = new ObservableCollection<>();
+        Log.d("TAG_R", "init: ");
 
     }
 
     public WebServer(String hostname, int port) {
         super(hostname, port);
         init();
-
     }
 
     @Override
@@ -61,7 +61,7 @@ public class WebServer extends NanoHTTPD {
         try {
 
             //localM = App.gson.fromJson(bodyJson, new TypeToken<ObservableCollection<ERESNotification>>(){}.getType());
-
+            Log.d("TAG_R", "serve: "+bodyJson.toString());
             localM.addAll(App.gson.fromJson(bodyJson, Notes.class).getNotes());
             Log.d("TAG_R", "serve: ");
             App app =App.getApp();

@@ -1,5 +1,6 @@
 package com.eres.waiter.waiter.retrofit;
 
+import com.eres.waiter.waiter.model.AccountToken;
 import com.eres.waiter.waiter.model.AddedDb;
 import com.eres.waiter.waiter.model.ArmoredTables;
 import com.eres.waiter.waiter.model.DataMenu;
@@ -27,6 +28,8 @@ import retrofit2.http.Query;
 
 
 public interface ApiInterface {
+    @PUT("api/account/token")
+    Call<AccountToken> getAutzToken(@Header("token") String token, @Query("username") String user, @Query("password") String pass);
 
     @GET("api/tables")
     Single<ObservableCollection<Hall>> getAllTables();
@@ -40,11 +43,11 @@ public interface ApiInterface {
     @GET("itisyou")
     Call<Response> getResponse();
 
-    @GET("api/admin/getme")
-    Call<ObjectGetMe> getMe();
+    @GET("api/admin/getme?role=Waiter")
+    Call<ObjectGetMe> getMe(@Header("token") String token);
 
     @GET("api/addmyphone")
-    Call<AddedDb> setToken();
+    Call<AddedDb> setToken(@Header("token") String s);
 
     @GET("api/tables")
     Call<ArrayList<EmptyTable>> getEmptyTable();

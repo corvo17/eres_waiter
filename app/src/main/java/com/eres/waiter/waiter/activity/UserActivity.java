@@ -26,7 +26,6 @@ public class UserActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.users_about);
 
-        logOut = findViewById(R.id.logout);
 
         back = findViewById(R.id.back);
         back.setOnClickListener(v -> finish());

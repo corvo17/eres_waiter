@@ -2,50 +2,60 @@ package com.eres.waiter.waiter.model;
 
 import com.google.gson.annotations.SerializedName;
 
-public class ObjectGetMe{
+import java.util.ArrayList;
 
-	@SerializedName("msg")
-	private String msg;
+public class ObjectGetMe {
+    private ArrayList<String> users;
 
-	@SerializedName("data")
-	private Data data;
+    public ArrayList<String> getUsers() {
+        return users;
+    }
 
-	@SerializedName("status")
-	private String status;
+    public void setUsers(ArrayList<String> users) {
+        this.users = users;
+    }
+
+    @SerializedName("msg")
+    private String msg;
+
+    @SerializedName("data")
+    private Data data;
+
+    @SerializedName("status")
+    private String status;
 
 
+    public void setMsg(String msg) {
+        this.msg = msg;
+    }
 
-	public void setMsg(String msg){
-		this.msg = msg;
-	}
+    public String getMsg() {
+        return msg;
+    }
 
-	public String getMsg(){
-		return msg;
-	}
+    public void setData(Data data) {
+        this.data = data;
+    }
 
-	public void setData(Data data){
-		this.data = data;
-	}
+    public Data getData() {
+        return data;
+    }
 
-	public Data getData(){
-		return data;
-	}
+    public void setStatus(String status) {
+        this.status = status;
+    }
 
-	public void setStatus(String status){
-		this.status = status;
-	}
+    public String getStatus() {
+        return status;
+    }
 
-	public String getStatus(){
-		return status;
-	}
-
-	@Override
- 	public String toString(){
-		return 
-			"ObjectGetMe{" + 
-			"msg = '" + msg + '\'' + 
-			",data = '" + data + '\'' + 
-			",status = '" + status + '\'' + 
-			"}";
-		}
+    @Override
+    public String toString() {
+        return
+                "ObjectGetMe{" +
+                        "msg = '" + msg + '\'' +
+                        ",data = '" + data + '\'' +
+                        ",status = '" + status + '\'' +
+                        "}";
+    }
 }

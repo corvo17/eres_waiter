@@ -128,7 +128,7 @@ public class App extends Application {
             if (a == NotificationTypees.OrderAcceptedInKitchen.ordinal() || NotificationTypees.OrderProblemsInKithen.ordinal() == a || NotificationTypees.CompleteKitchen.ordinal() == a) {
 
                 Log.d("TEST_EVENT1", "Strart note event : " + note.getTableId() + " type =  " + a);
-                checkEventIAmTable(note.getTableId(), a);
+                checkEventIAmTable((int) note.getTableId(), a);
                 App.message.remove(note);
 
                 // Qaysi afitsiant notifay qsa ham event ketaveradi !!!!

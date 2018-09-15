@@ -2,8 +2,7 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="50dp"
-    android:layout_marginTop="4dp"
-    android:background="@drawable/background_item_check">
+    android:layout_marginTop="4dp">
 
 
     <CheckedTextView
@@ -18,5 +17,6 @@
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
         android:text="Shirin"
-        android:textSize="18sp" />
+        android:textSize="18sp"
+        android:textStyle="bold" />
 </android.support.constraint.ConstraintLayout>

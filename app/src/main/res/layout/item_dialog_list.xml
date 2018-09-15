@@ -8,32 +8,37 @@
     android:padding="6dp">
 
     <TextView
+
         android:id="@+id/name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
+        android:fontFamily="@font/myriad"
         android:gravity="center_vertical"
-        android:maxLines="12"
+        android:maxLength="30"
+        android:maxLines="1"
         android:text="BLinchik"
-        android:textSize="16sp"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/minus"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
         android:id="@+id/add"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginRight="10dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginRight="4dp"
         android:background="?android:selectableItemBackground"
+        android:scaleType="fitXY"
         app:layout_constraintRight_toRightOf="parent"
         app:srcCompat="@drawable/ic_add_circle_outline_black_24dp" />
 
     <TextView
         android:id="@+id/count"
         android:layout_width="wrap_content"
-        android:layout_height="40dp"
-        android:layout_marginRight="10dp"
+        android:layout_height="30dp"
+        android:layout_marginRight="4dp"
         android:gravity="center_vertical"
         android:text="0"
         android:textSize="20sp"
@@ -41,10 +46,11 @@
 
     <ImageButton
         android:id="@+id/minus"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginRight="10dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginRight="4dp"
         android:background="?android:selectableItemBackground"
+        android:scaleType="fitXY"
         app:layout_constraintRight_toLeftOf="@id/count"
         app:srcCompat="@drawable/ic_remove_circle_outline_black_24dp" />
 </android.support.constraint.ConstraintLayout>

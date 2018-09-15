@@ -3,32 +3,37 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/armored_back">
+    android:background="@drawable/bac">
 
-
-    <TextView
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="100dp"
+    <LinearLayout
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        android:layout_marginTop="80dp"
+        android:background="@drawable/a_table"
+        android:gravity="center"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:id="@+id/table_number"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="3dp"
-        android:gravity="center_vertical"
-        android:text="10"
-        android:textColor="#ffffff"
-        android:textSize="72sp"
+        app:layout_constraintTop_toTopOf="parent">
 
 
-        />
+        <TextView
+
+            android:id="@+id/table_number"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            android:text="100"
+            android:textColor="#ffffff"
+            android:textSize="72sp" />
+    </LinearLayout>
+
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginBottom="10dp"
         android:layout_marginLeft="40dp"
         android:layout_marginTop="30dp"
-        android:layout_marginBottom="10dp"
         app:layout_constraintBottom_toTopOf="@id/openList">
 
         <LinearLayout
@@ -41,17 +46,17 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
-                android:scaleType="fitXY"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
+                android:scaleType="fitXY"
                 android:src="@drawable/users" />
 
             <TextView
 
-                android:layout_marginLeft="10dp"
                 android:id="@+id/name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
                 android:gravity="center_vertical"
                 android:text="Jabborov Sherzod"
                 android:textColor="@color/waeit"
@@ -76,10 +81,10 @@
                 app:srcCompat="@drawable/ic_access_time_black_24dp" />
 
             <TextView
-                android:layout_marginLeft="10dp"
                 android:id="@+id/date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
                 android:gravity="center_vertical"
                 android:text="20:30"
                 android:textColor="@color/waeit"
@@ -104,10 +109,10 @@
                 app:srcCompat="@drawable/ic_cal" />
 
             <TextView
-                android:layout_marginLeft="10dp"
                 android:id="@+id/phone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
                 android:gravity="center_vertical"
                 android:text="28.08.2018"
                 android:textColor="@color/waeit"

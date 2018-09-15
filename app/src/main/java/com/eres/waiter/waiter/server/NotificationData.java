@@ -1,103 +1,112 @@
 package com.eres.waiter.waiter.server;
 
 public class NotificationData {
-    public int Id;
-    public int FromSmartPhoneId;
-    public int ToSmartPhoneId;
-    public int TableId;
-    public int HallId;
-    public int OrderId;
-    public int FromDepartmentId;
-    public int FromEmployeeId;
-    public String Message;
-    public int NotificationTypeId;
-    public String DateN;
+    private long Id;
+    private long FromUserId;
+    private long ToUserId;
+    private long TableId;
+    private long HallId;
+    private long OrderId;
+    private long FromDepartmentId;
+    private long ToDepartmentId;
+    private String Message;
+    private int NotificationTypeId;
+    private String DateN;
+    private long ProductId;
 
-    public int getId() {
-        return Id;
-    }
-
-    public void setId(int id) {
+    public void setId(long id) {
         Id = id;
     }
 
-    public int getFromSmartPhoneId() {
-        return FromSmartPhoneId;
+    public void setFromUserId(long fromUserId) {
+        FromUserId = fromUserId;
     }
 
-    public void setFromSmartPhoneId(int fromSmartPhoneId) {
-        FromSmartPhoneId = fromSmartPhoneId;
+    public void setToUserId(long toUserId) {
+        ToUserId = toUserId;
     }
 
-    public int getToSmartPhoneId() {
-        return ToSmartPhoneId;
-    }
-
-    public void setToSmartPhoneId(int toSmartPhoneId) {
-        ToSmartPhoneId = toSmartPhoneId;
-    }
-
-    public int getTableId() {
-        return TableId;
-    }
-
-    public void setTableId(int tableId) {
+    public void setTableId(long tableId) {
         TableId = tableId;
     }
 
-    public int getHallId() {
-        return HallId;
-    }
-
-    public void setHallId(int hallId) {
+    public void setHallId(long hallId) {
         HallId = hallId;
     }
 
-    public int getOrderId() {
-        return OrderId;
-    }
-
-    public void setOrderId(int orderId) {
+    public void setOrderId(long orderId) {
         OrderId = orderId;
     }
 
-    public int getFromDepartmentId() {
-        return FromDepartmentId;
-    }
-
-    public void setFromDepartmentId(int fromDepartmentId) {
+    public void setFromDepartmentId(long fromDepartmentId) {
         FromDepartmentId = fromDepartmentId;
     }
 
-    public int getFromEmployeeId() {
-        return FromEmployeeId;
-    }
-
-    public void setFromEmployeeId(int fromEmployeeId) {
-        FromEmployeeId = fromEmployeeId;
-    }
-
-    public String getMessage() {
-        return Message;
+    public void setToDepartmentId(long toDepartmentId) {
+        ToDepartmentId = toDepartmentId;
     }
 
     public void setMessage(String message) {
         Message = message;
     }
 
-    public int getNotificationTypeId() {
-        return NotificationTypeId;
-    }
-
     public void setNotificationTypeId(int notificationTypeId) {
         NotificationTypeId = notificationTypeId;
+    }
+
+    public void setDateN(String dateN) {
+        DateN = dateN;
+    }
+
+    public void setProductId(long productId) {
+        ProductId = productId;
+    }
+
+    public long getId() {
+        return Id;
+    }
+
+    public long getFromUserId() {
+        return FromUserId;
+    }
+
+    public long getToUserId() {
+        return ToUserId;
+    }
+
+    public long getTableId() {
+        return TableId;
+    }
+
+    public long getHallId() {
+        return HallId;
+    }
+
+    public long getOrderId() {
+        return OrderId;
+    }
+
+    public long getFromDepartmentId() {
+        return FromDepartmentId;
+    }
+
+    public long getToDepartmentId() {
+        return ToDepartmentId;
+    }
+
+    public String getMessage() {
+        return Message;
+    }
+
+    public int getNotificationTypeId() {
+        return NotificationTypeId;
     }
 
     public String getDateN() {
         return DateN;
     }
 
-    public void setDateN(String dateN) {
-        DateN = dateN;
+    public long getProductId() {
+        return ProductId;
     }
 }

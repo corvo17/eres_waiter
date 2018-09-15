@@ -48,9 +48,9 @@
             android:layout_marginLeft="8dp"
             android:layout_marginRight="4dp"
             android:layout_weight="1"
-            android:background="#EE524E"
+            android:background="@drawable/back_button_corner"
             android:text="Добавить еще"
-            android:textColor="#ffffff"
+            android:textColor="@color/colorPrimary"
             android:textStyle="bold" />
 
         <Button
@@ -60,7 +60,7 @@
             android:layout_marginLeft="4dp"
             android:layout_marginRight="8dp"
             android:layout_weight="1"
-            android:background="#EE524E"
+            android:background="@drawable/background_menu_item"
             android:text="Вывести чек"
             android:textColor="#ffffff"
             android:textStyle="bold" />

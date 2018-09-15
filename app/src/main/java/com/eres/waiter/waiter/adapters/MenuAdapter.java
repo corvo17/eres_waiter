@@ -127,7 +127,7 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MyMenuViewHold
             textView.setText(res);
         });
 
-
+        btnRet.callOnClick();
         Button button = dialog.findViewById(R.id.ok);
         button.setOnClickListener(v -> {
             dialog.dismiss();

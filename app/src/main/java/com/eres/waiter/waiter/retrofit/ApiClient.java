@@ -22,7 +22,7 @@ public class ApiClient {
             OkHttpClient.Builder builder = new OkHttpClient().newBuilder();
             OkHttpClient client = builder
                     .addInterceptor(new ChuckInterceptor(context)).addInterceptor(chain -> {
-                        Request request = chain.request().newBuilder().addHeader("token", SettingPreferances.preferances.getIme()).build();
+                        Request request = chain.request().newBuilder().addHeader("token", SettingPreferances.preferances.getIme()).addHeader("Authorization","bearer "+SettingPreferances.preferances.getAuthorization()).build();
                         return chain.proceed(request);
                     }).build();
 

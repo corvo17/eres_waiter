@@ -82,21 +82,28 @@ public class AdapterMyTableList extends RecyclerView.Adapter<AdapterMyTableList.
 
     private void loadStateId(MyViewHolder holder, int stateId) {
         holder.layout.setVisibility(View.GONE);
+        ImageView img = holder.imageView;
+        img.setVisibility(View.VISIBLE);
+
         holder.swipeRevealLayout.setLockDrag(false);
         boolean swap = false;
         if (stateId == OrderState.SendToKitchen.ordinal()) {
             swap = true;
-            holder.imageView.setImageResource(R.drawable.help);
+            img.setVisibility(View.GONE);
+            holder.container.setBackgroundResource(R.drawable.background_i_table_item);
+
         } else if (stateId == OrderState.CompleteKitchen.ordinal()) {
             holder.layout.setVisibility(View.VISIBLE);
-            holder.imageView.setImageResource(R.drawable.compile);
+            holder.container.setBackgroundResource(R.drawable.background_i_table_item_green);
+            holder.imageView.setImageResource(R.drawable.ic_check);
         } else if (stateId == OrderState.AcceptedInKitchen.ordinal()) {
             holder.layout.setVisibility(View.VISIBLE);
-            holder.imageView.setImageResource(R.drawable.accept);
-
+            holder.imageView.setImageResource(R.drawable.ic_waiting);
+            holder.container.setBackgroundResource(R.drawable.background_i_table_item_green);
         } else if (stateId == OrderState.ProblemInKitchen.ordinal()) {
             swap = true;
-            holder.imageView.setImageResource(R.drawable.ic_error_outline_black_24dp);
+            holder.container.setBackgroundResource(R.drawable.background_i_table_item_red);
+            holder.imageView.setImageResource(R.drawable.ic_error);
         }
         if (!swap) {
             holder.swipeRevealLayout.setLockDrag(true);
@@ -114,11 +121,13 @@ public class AdapterMyTableList extends RecyclerView.Adapter<AdapterMyTableList.
         TextView textView;
         ImageView imageView;
         ConstraintLayout remove;
+        ConstraintLayout container;
         SwipeRevealLayout swipeRevealLayout;
 
 
         public MyViewHolder(View itemView) {
             super(itemView);
+            container = itemView.findViewById(R.id.contain);
             layout = itemView.findViewById(R.id.block);
             textView = itemView.findViewById(R.id.name);
             imageView = itemView.findViewById(R.id.status);

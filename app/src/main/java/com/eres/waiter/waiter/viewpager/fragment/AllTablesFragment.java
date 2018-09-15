@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.eres.waiter.waiter.R;
 import com.eres.waiter.waiter.app.App;
@@ -85,9 +86,11 @@ public class AllTablesFragment extends Fragment {
         tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
-//                View view1 = LayoutInflater.from(getContext()).inflate(R.layout.custum_view, container, false);
+                View view1 = LayoutInflater.from(getContext()).inflate(R.layout.custum_view, container, false);
+//                TextView textView = view1.findViewById(R.id.text);
+//                textView.setText(halls.get(tab.getPosition()).getName());
 //                tab.setCustomView(view1);
-//                Log.d("TAB_TEST", "onTabSelected: " + tab.getText());
+                Log.d("TAB_TEST", "onTabSelected: " + tab.getText());
                 tabPos = tab.getPosition();
             }
 

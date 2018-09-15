@@ -26,13 +26,14 @@
         app:layout_constraintTop_toBottomOf="@id/title" />
 
     <EditText
-        android:layout_marginTop="10dp"
         android:id="@+id/comment"
         android:layout_width="0dp"
-        android:text=""
         android:layout_height="wrap_content"
-        android:hint="Комментарии"
+        android:layout_marginTop="10dp"
+        android:hint="Комментарий"
+        android:text=""
         android:textSize="24sp"
+        android:theme="@style/MyEditTextTheme"
         app:layout_constraintBottom_toTopOf="@id/ok"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"

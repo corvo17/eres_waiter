@@ -49,7 +49,7 @@ public class SettingPreferances {
     }
 
     public String getUrl() {
-        return pref.getString("URL", "http://192.168.0.106:9000/");
+        return pref.getString("URL", "http://192.168.0.102:9000/");
     }
 
     public void setIme(String ime) {
@@ -82,4 +82,13 @@ public class SettingPreferances {
         return pref.getInt("HALLP", 0);
     }
 
+    public void setAuthorization(String authorization) {
+        editor = pref.edit();
+        editor.putString("AUTH", authorization);
+        editor.apply();
+    }
+
+    public String getAuthorization() {
+        return pref.getString("AUTH", "0");
+    }
 }
