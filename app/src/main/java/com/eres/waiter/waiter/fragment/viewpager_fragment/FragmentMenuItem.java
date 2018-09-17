@@ -23,6 +23,7 @@ import com.eres.waiter.waiter.model.EmptyTable;
 import com.eres.waiter.waiter.model.singelton.DataSingelton;
 import com.eres.waiter.waiter.retrofit.ApiClient;
 import com.eres.waiter.waiter.retrofit.ApiInterface;
+import com.eres.waiter.waiter.viewpager.DepthTransformation;
 
 import java.util.ArrayList;
 
@@ -45,6 +46,8 @@ public class FragmentMenuItem extends Fragment {
         View view = inflater.inflate(R.layout.empty_layout, container, false);
         tabLayout = view.findViewById(R.id.listTab);
         viewPager = view.findViewById(R.id.pagerInner);
+        DepthTransformation transformation = new DepthTransformation();
+        viewPager.setPageTransformer(true, transformation);
         key = getArguments().getInt("POS");
         onLoadListData();
 

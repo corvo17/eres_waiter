@@ -73,11 +73,12 @@
             android:layout_height="0dp"
             android:layout_margin="10dp"
             android:background="@drawable/background_menu_item"
+            android:padding="20dp"
             app:layout_constraintBottom_toTopOf="@id/btn3"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toLeftOf="@id/btn2"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_profile" />
+            app:srcCompat="@drawable/ic_bag" />
 
         <ImageView
 
@@ -91,7 +92,7 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_chainStyle="spread_inside"
-            app:srcCompat="@drawable/ic_profile" />
+            app:srcCompat="@drawable/ic_favorite" />
 
         <ImageView
 
@@ -104,7 +105,7 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toLeftOf="@id/btn4"
             app:layout_constraintTop_toBottomOf="@id/btn1"
-            app:srcCompat="@drawable/ic_profile" />
+            app:srcCompat="@drawable/ic_sucessfully" />
 
         <ImageView
             android:id="@+id/btn4"
@@ -116,7 +117,7 @@
             app:layout_constraintLeft_toRightOf="@id/btn3"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/btn2"
-            app:srcCompat="@drawable/ic_profile" />
+            app:srcCompat="@drawable/ic_not_distrurb" />
 
     </android.support.constraint.ConstraintLayout>
 

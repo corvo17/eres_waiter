@@ -24,21 +24,7 @@ public class MyMenuActivity extends AppCompatActivity {
         transaction.replace(R.id.container1, fragmentMenu);
         transaction.addToBackStack("ss");
         transaction.commit();
-//        com.eres.waiter.waiter.viewpager.service.WebServer.Messages.setCollectionChangeListener(new ObservableArrayBlockingQueue.CollectionChangeListener() {
-//            @Override
-//            public void onCollectionChange(ObservableArrayBlockingQueue.NotifyCollectionChangedAction action, Object obj, long position) {
-//                if (action == ObservableArrayBlockingQueue.NotifyCollectionChangedAction.Add) {
-//                    while (com.eres.waiter.waiter.viewpager.service.WebServer.Messages.size() > 0) {
-//                        NotificationData note = com.eres.waiter.waiter.viewpager.service.WebServer.Messages.poll();
-//                        Log.i("TAG_R", "note:" + note.getNotificationTypeId() + " " + note.getTableId());
-//                        if (note.getNotificationTypeId() == NotificationTypees.MenuChanged.ordinal()) {
-//                            DataSingelton.singelton.loadData();
-//                            break;
-//                        }
-//                    }
-//                }
-//            }
-//        });
+
     }
 
     @Override

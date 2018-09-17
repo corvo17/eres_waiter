@@ -91,4 +91,24 @@ public class SettingPreferances {
     public String getAuthorization() {
         return pref.getString("AUTH", "0");
     }
+
+    public void setTableName(String name) {
+        editor = pref.edit();
+        editor.putString("T_NAME", name);
+        editor.apply();
+    }
+
+    public void setHallName(String hallName) {
+        editor = pref.edit();
+        editor.putString("HALL_NAME", hallName);
+        editor.apply();
+    }
+
+    public String getHallName() {
+        return pref.getString("HALL_NAME", "Hall");
+    }
+
+    public String getTableName() {
+        return pref.getString("T_NAME", "0");
+    }
 }

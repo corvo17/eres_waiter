@@ -1,6 +1,7 @@
 package com.eres.waiter.waiter.activity;
 
 import android.Manifest;
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.wifi.WifiManager;
@@ -8,6 +9,7 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatSpinner;
 import android.telephony.TelephonyManager;
@@ -42,6 +44,7 @@ import java.net.SocketException;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 
+import dmax.dialog.SpotsDialog;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 import retrofit2.Call;
@@ -59,6 +62,8 @@ public class LoginActivity extends AppCompatActivity {
     private EditText pass;
     private ArrayList<String> spinnerTexts;
     private boolean isSpinner = false;
+    private boolean reg = false;
+    private SpotsDialog.Builder dialog;
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -93,12 +98,11 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        dialog = new SpotsDialog.Builder();
         pass = findViewById(R.id.pass);
         spinner = findViewById(R.id.spinner);
         spinnerTexts = new ArrayList<>();
@@ -111,7 +115,7 @@ public class LoginActivity extends AppCompatActivity {
         TelephonyManager telephonyManager = (TelephonyManager) getSystemService(this.TELEPHONY_SERVICE);
         if (!(ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED)) {
             Toast.makeText(this, "" + telephonyManager.getDeviceId(), Toast.LENGTH_SHORT).show();
-//            preferances.setIme(telephonyManager.getDeviceId() + "");
+            preferances.setIme(telephonyManager.getDeviceId() + "");
 // TODO: 07.09.2018 preferenseni uchir  
         }
         button = findViewById(R.id.open);
@@ -197,9 +201,12 @@ public class LoginActivity extends AppCompatActivity {
                 if (response.body() != null) {
                     Log.d(TAG, "onResponse: ");
                     if (response.body().getStatus().equals("itisme")) {
+                        dialog.build().dismiss();
                         Log.d(TAG, "onResponse: itishme");
                         SettingPreferances.preferances.setUrl(ip);
+
                         Toast.makeText(LoginActivity.this, "SERVER : " + ip, Toast.LENGTH_SHORT).show();
+
                         getMe();
                         loadServer = true;
                     }
@@ -232,8 +239,9 @@ public class LoginActivity extends AppCompatActivity {
                     dbCall.enqueue(new Callback<AddedDb>() {
                         @Override
                         public void onResponse(Call<AddedDb> call, Response<AddedDb> response) {
-                            if (response.body() != null) {
+                            if (response.body() != null && reg) {
                                 Toast.makeText(LoginActivity.this, "Registration Successfull", Toast.LENGTH_SHORT).show();
+                                reg = true;
                                 button.setClickable(true);
                             }
                         }
@@ -268,6 +276,8 @@ public class LoginActivity extends AppCompatActivity {
         new CountDownTimer(400000, 10000) {
             @Override
             public void onTick(long millisUntilFinished) {
+                Log.d(TAG, "onTick: " + millisUntilFinished);
+
                 if (isSpinner) {
                     onFinish();
                 }
@@ -282,8 +292,8 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void loadSpinner(ArrayList<String> strings) {
-
         spinnerTexts.clear();
+        spinnerTexts.add("Пользователь");
         spinnerTexts.addAll(strings);
         ArrayAdapter<String> adapter = new ArrayAdapter<>(LoginActivity.this, R.layout.item_spinner, spinnerTexts);
         spinner.setAdapter(adapter);
@@ -333,6 +343,11 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void searchServer() {
+
+
+        dialog.setContext(this);
+        dialog.setMessage("Search Server ...");
+        dialog.build().show();
         new Thread(new Runnable() {
             @Override
             public void run() {

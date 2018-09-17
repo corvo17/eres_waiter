@@ -14,14 +14,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
-
 import com.eres.waiter.waiter.R;
 import com.eres.waiter.waiter.app.App;
 import com.eres.waiter.waiter.fragment.viewpager_fragment.FragmentTables;
 import com.eres.waiter.waiter.model.Table;
 import com.eres.waiter.waiter.model.TablesItem;
 import com.eres.waiter.waiter.preferance.SettingPreferances;
+import com.eres.waiter.waiter.viewpager.DepthTransformation;
 import com.eres.waiter.waiter.viewpager.helper.ObservableCollection;
 import com.eres.waiter.waiter.viewpager.model.Hall;
 import com.eres.waiter.waiter.viewpager.viewmodel.AllTablesViewModel;
@@ -67,6 +66,7 @@ public class AllTablesFragment extends Fragment {
                 halls = halls1;
                 App.getApp().setTables(data.getValue());
                 pageAdapter = new MyFragmentPagerAdapter(model.getData(), getFragmentManager());
+                vPager.setPageTransformer(true, new DepthTransformation());
                 vPager.setAdapter(pageAdapter);
                 tabLayout.setupWithViewPager(vPager);
 

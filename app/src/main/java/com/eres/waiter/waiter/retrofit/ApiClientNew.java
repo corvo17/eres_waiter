@@ -2,13 +2,8 @@ package com.eres.waiter.waiter.retrofit;
 
 import android.content.Context;
 
-import com.eres.waiter.waiter.preferance.SettingPreferances;
-import com.readystatesoftware.chuck.ChuckInterceptor;
-
 import okhttp3.OkHttpClient;
-import okhttp3.Request;
 import retrofit2.Retrofit;
-import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 

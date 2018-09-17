@@ -64,6 +64,7 @@ public class AdapterEmpty extends RecyclerView.Adapter<AdapterEmpty.MyViewHolder
             DataSingelton.getMyOrders().clear();
             SettingPreferances preferances = SettingPreferances.getSharedPreferance(null);
             preferances.setOrderId(0);
+            preferances.setTableName(strings.get(position).getName());
             preferances.setTableId(strings.get(position).getId());
             holder.view.getContext().startActivity(new Intent(holder.textView.getContext(), MyMenuActivity.class));
         });

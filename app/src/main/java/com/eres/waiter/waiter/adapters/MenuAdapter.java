@@ -2,6 +2,7 @@ package com.eres.waiter.waiter.adapters;
 
 import android.app.Dialog;
 import android.support.annotation.NonNull;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -13,6 +14,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -46,6 +48,15 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MyMenuViewHold
     public void onBindViewHolder(@NonNull MyMenuViewHolder holder, int position) {
         holder.name.setText(items.get(position).getName());
         setMyTextView(holder, position);
+        // TODO: 15.09.2018 true ni ornigaa isDeleteni yozishh kerak
+        if (items.get(position).getExcluded() == 1 && true) {
+            holder.cont.setBackgroundResource(R.drawable.background_new_item_red);
+            holder.back.setVisibility(View.VISIBLE);
+        } else {
+            holder.back.setVisibility(View.GONE);
+            holder.cont.setBackgroundResource(R.drawable.background_new_item);
+
+        }
 //        Glide.with(holder.name.getContext()).load("http://192.168.0.118:8000/" + items.get(position).getImageUrl()).into(holder.img);
 //        Glide.with(holder.name.getContext()).load("http://loremflickr.com/320/240/dog").into(holder.img);
         holder.info.setOnClickListener(v -> {
@@ -147,15 +158,19 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MyMenuViewHold
 
     public class MyMenuViewHolder extends RecyclerView.ViewHolder {
 
+        private ConstraintLayout cont;
         private TextView name;
         private ImageView img;
         private ImageButton add, minus;
         private TextView count;
         private ImageView sendData;
         private ImageView info;
+        private LinearLayout back;
 
         public MyMenuViewHolder(View itemView) {
             super(itemView);
+            back = itemView.findViewById(R.id.block);
+            cont = itemView.findViewById(R.id.cont);
             info = itemView.findViewById(R.id.info);
             sendData = itemView.findViewById(R.id.sendComment);
             count = itemView.findViewById(R.id.count);

@@ -56,6 +56,7 @@ import org.greenrobot.eventbus.ThreadMode;
 import java.util.ArrayList;
 import java.util.function.Predicate;
 
+import dmax.dialog.SpotsDialog;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -71,6 +72,7 @@ public class FragmentMenu extends Fragment {
     private FragmentManager fM;
     private SearchFragment searchFragment;
     private BottomNavigationView navigation;
+    private SpotsDialog.Builder dialogMessage;
 
     @Override
     public void onDestroyView() {
@@ -185,7 +187,7 @@ public class FragmentMenu extends Fragment {
 
         recyclerView.setAdapter(adapterList);
         TextView textView = dialog.findViewById(R.id.table);
-        textView.setText(SettingPreferances.preferances.getTableId() + " - Стол");
+        textView.setText(SettingPreferances.preferances.getTableName() + " - Стол");
         button.setOnClickListener(v -> {
             for (ProductsItem productsItem : DataSingelton.testSet) {
                 productsItem.setCount(0);
@@ -235,6 +237,11 @@ public class FragmentMenu extends Fragment {
     }
 
     public void sendDataApi() {
+        dialogMessage = new SpotsDialog.Builder();
+        dialogMessage.setContext(getContext());
+        dialogMessage.setMessage("Sending...");
+        dialogMessage.build().show();
+
         EventBus.getDefault().post(new EventTable(0));
         int tableId = SettingPreferances.preferances.getTableId();
 
@@ -254,7 +261,7 @@ public class FragmentMenu extends Fragment {
                     0,
                     item.getId(),
                     0,
-                    2,
+                    item.getCount(),
                     0,
                     1,
                     item.getCount(),
@@ -295,17 +302,20 @@ public class FragmentMenu extends Fragment {
                     EventBus.getDefault().post(new EventMessageSendFood(state));
                     Log.d(TAG, "onResponse:  yesss " + state);
 
-DataSingelton.singelton.loadITable();
+                    DataSingelton.singelton.loadITable();
                     //   Toast.makeText(getContext(), "Send Data Kitchen", Toast.LENGTH_SHORT).show();
+                    clearData();
                 }
             }
 
             @Override
             public void onFailure(Call<OrderData> call, Throwable t) {
+
                 t.printStackTrace();
+                clearData();
             }
         });
-        clearData();
+
 
     }
 
@@ -313,9 +323,13 @@ DataSingelton.singelton.loadITable();
         for (ProductsItem item : DataSingelton.testSet) {
             item.setCount(0);
         }
+
+dialogMessage.build().dismiss();
         DataSingelton.testSet.clear();
 
         DataSingelton.testSet.clear();
+
+
         dialog.dismiss();
         getActivity().finish();
     }

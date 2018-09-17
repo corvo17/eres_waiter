@@ -1,0 +1,10 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="300dp"
+    android:height="300dp"
+    android:viewportWidth="300"
+    android:viewportHeight="300">
+    <path
+        android:fillColor="#fff"
+        android:name="Прямоугольник, скругл. углы 3"
+        android:pathData="m114 99c-2.76 0 -5 2.24 -5 5v84c0 2.76 2.24 5 5 5h14.56c2.76 0 5 -2.24 5 -5v-84c0 -2.76 -2.24 -5 -5 -5zm55.44 0c-2.76 0 -5 2.24 -5 5v84c0 2.76 2.24 5 5 5h14.56c2.76 0 5 -2.24 5 -5v-84c0 -2.76 -2.24 -5 -5 -5zm-19.94 -44c49.9 0 90.5 40.6 90.5 90.5c0 49.9 -40.6 90.5 -90.5 90.5c-49.9 0 -90.5 -40.6 -90.5 -90.5c0 -49.9 40.6 -90.5 90.5 -90.5zm0 -20c-61.03 0 -110.5 49.47 -110.5 110.5c0 61.03 49.47 110.5 110.5 110.5c61.03 0 110.5 -49.47 110.5 -110.5c0 -61.03 -49.47 -110.5 -110.5 -110.5z" />
+</vector>

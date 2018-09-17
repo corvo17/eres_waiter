@@ -30,11 +30,11 @@ public class FragmentMenuItems extends Fragment {
     private RecyclerView recyclerView;
     private MenuAdapter adapter;
 
-    @Override
-    public Animation onCreateAnimation(int transit, boolean enter, int nextAnim) {
-
-        return MoveAnimation.create(MoveAnimation.UP, enter, 300);
-    }
+//    @Override
+//    public Animation onCreateAnimation(int transit, boolean enter, int nextAnim) {
+//
+//        return MoveAnimation.create(MoveAnimation.UP, enter, 300);
+//    }
 
     @Nullable
     @Override

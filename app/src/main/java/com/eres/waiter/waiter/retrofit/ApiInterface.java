@@ -63,6 +63,8 @@ public interface ApiInterface {
 
     @GET("api/orders/ordersfortable")
     Single<ArrayList<OrderData>> getMyTableList(@Query("tableId") String tableId);
+    @GET("api/orders/ordersfortable")
+    Call<ArrayList<OrderData>> getMyTableListRetroofit(@Query("tableId") String tableId);
 
     @POST("api/orders/saveForWaiter")
     Call<OrderData> sendData(@Body OrderData data);

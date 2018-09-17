@@ -51,7 +51,7 @@
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_bin"/>
+                app:srcCompat="@drawable/ic_bin" />
         </android.support.constraint.ConstraintLayout>
 
         <android.support.constraint.ConstraintLayout
@@ -65,21 +65,41 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
+                android:fontFamily="@font/myriad"
+                android:maxLength="28"
                 android:maxLines="2"
-                android:text="Blinchik"
-                android:textSize="18sp"
+                android:text="Blinchik sdasdasd asdasda sasda"
+                android:textColor="@color/waeit"
+                android:textSize="22sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/count"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:fontFamily="@font/myriad"
+                android:gravity="end"
+                android:maxLines="2"
+                android:paddingEnd="6dp"
+                android:paddingRight="6dp"
+                android:text="3 ta "
+                android:textColor="@color/waeit"
+                android:textSize="22sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toRightOf="@id/name"
                 app:layout_constraintRight_toLeftOf="@id/status"
                 app:layout_constraintTop_toTopOf="parent" />
 
 
             <ImageView
-                android:visibility="gone"
                 android:id="@+id/status"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_marginRight="16dp"
+                android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
 

@@ -20,6 +20,7 @@ import com.bumptech.glide.Glide;
 import com.chauthai.swipereveallayout.SwipeRevealLayout;
 import com.eres.waiter.waiter.R;
 import com.eres.waiter.waiter.adapters.diffUtil.OrderCallback;
+import com.eres.waiter.waiter.logic.BaseLogic;
 import com.eres.waiter.waiter.model.OrderItemsItem;
 import com.eres.waiter.waiter.model.enums.OrderState;
 import com.eres.waiter.waiter.preferance.SettingPreferances;
@@ -38,11 +39,13 @@ public class AdapterMyTableList extends RecyclerView.Adapter<AdapterMyTableList.
     }
 
     public void updateList(ArrayList<OrderItemsItem> newList) {
-        DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(new OrderCallback(items, newList));
-        items.clear();
-        items.addAll(newList);
-        diffResult.dispatchUpdatesTo(this);
-        notifyDataSetChanged();
+        if (newList != null) {
+            DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(new OrderCallback(items, newList));
+            items.clear();
+            items.addAll(newList);
+            diffResult.dispatchUpdatesTo(this);
+            notifyDataSetChanged();
+        }
     }
 
     public AdapterMyTableList(ArrayList<OrderItemsItem> items) {
@@ -59,7 +62,9 @@ public class AdapterMyTableList extends RecyclerView.Adapter<AdapterMyTableList.
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        holder.textView.setText(items.get(position).getProduct().getName());
+        BaseLogic baseLogic = new BaseLogic();
+        holder.textView.setText(baseLogic.textSubString(items.get(position).getProduct().getName(), 25,true));
+        holder.count.setText(items.get(position).getCount() + " шт");
         holder.remove.setOnClickListener(v -> {
             holder.swipeRevealLayout.close(true);
             try {
@@ -123,10 +128,11 @@ public class AdapterMyTableList extends RecyclerView.Adapter<AdapterMyTableList.
         ConstraintLayout remove;
         ConstraintLayout container;
         SwipeRevealLayout swipeRevealLayout;
-
+        TextView count;
 
         public MyViewHolder(View itemView) {
             super(itemView);
+            count = itemView.findViewById(R.id.count);
             container = itemView.findViewById(R.id.contain);
             layout = itemView.findViewById(R.id.block);
             textView = itemView.findViewById(R.id.name);

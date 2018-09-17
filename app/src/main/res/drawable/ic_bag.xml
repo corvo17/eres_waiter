@@ -1,0 +1,10 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="290dp"
+    android:height="341dp"
+    android:viewportWidth="290"
+    android:viewportHeight="341">
+    <path
+        android:fillColor="#fff"
+        android:name="Фигура 3"
+        android:pathData="m145 55c26.47 0 48 21.52 48 47.97v2.54h-96v-2.54c0 -26.45 21.53 -47.97 48 -47.97zm0 -20c-37.5 0 -68 30.49 -68 67.97v2.54h-3.4c-10.29 0 -19.31 7.57 -20.16 17.08l-13.52 150.52c-1.15 12.78 7.84 23.34 20.09 23.34h169.71c12.25 0 21.24 -10.57 20.09 -23.34l-13.52 -150.52c-0.85 -9.5 -9.87 -17.08 -20.16 -17.08h-3.12v-2.54c0 -37.48 -30.5 -67.97 -68 -67.97z" />
+</vector>

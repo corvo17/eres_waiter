@@ -68,7 +68,7 @@
         android:layout_width="280dp"
         android:layout_height="60dp"
         android:layout_marginTop="20dp"
-        android:background="@drawable/background_i_table_item"
+        android:background="@drawable/background_log_b"
         android:clickable="false"
         android:contentDescription="@string/todo"
         android:text="ВОЙТИ"

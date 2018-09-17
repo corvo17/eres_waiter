@@ -16,7 +16,7 @@
         app:tabGravity="fill"
         app:tabIndicatorColor="#ffffff"
         app:tabIndicatorHeight="0dp"
-        app:tabMaxWidth="100dp"
+        app:tabMaxWidth="110dp"
         app:tabMode="scrollable"
         app:tabSelectedTextColor="@color/colorPrimary"
         app:tabTextAppearance="@style/TabLayoutStyle"

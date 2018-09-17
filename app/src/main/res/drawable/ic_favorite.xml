@@ -1,0 +1,10 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="310dp"
+    android:height="300dp"
+    android:viewportWidth="310"
+    android:viewportHeight="300">
+    <path
+        android:fillColor="#fff"
+        android:name="Многоугольник 1"
+        android:pathData="m195.76 98.85c89.55 -0.17 98.05 25.96 25.5 78.4c27.84 85.02 5.58 101.17 -66.76 48.46c-72.35 52.72 -94.6 36.57 -66.76 -48.46c-72.55 -52.44 -64.05 -78.57 25.5 -78.4c27.51 -85.13 55.02 -85.13 82.53 0z" />
+</vector>

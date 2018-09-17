@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.eres.waiter.waiter.R;
@@ -16,6 +17,7 @@ import com.eres.waiter.waiter.app.App;
 import com.eres.waiter.waiter.model.OrderData;
 import com.eres.waiter.waiter.model.OrderItemsItem;
 import com.eres.waiter.waiter.model.ProductsItem;
+import com.eres.waiter.waiter.model.events.EventIAmTableChange;
 import com.eres.waiter.waiter.model.events.EventMessageSendFood;
 import com.eres.waiter.waiter.model.singelton.DataSingelton;
 import com.eres.waiter.waiter.preferance.SettingPreferances;
@@ -38,7 +40,7 @@ import retrofit2.Response;
 public class FoodListActivity extends AppCompatActivity {
     ArrayList<OrderItemsItem> items;
     private RecyclerView recyclerView;
-    String id;
+    public static String id;
     private Disposable disposable;
     int orderId = 0;
     private String TAG = "MY_LOGG";
@@ -49,6 +51,7 @@ public class FoodListActivity extends AppCompatActivity {
     private Button sendCasheir;
     AdapterMyTableList adapterMyTableList;
     private boolean load = false;
+    private TextView tableName;
 
 
     @Override
@@ -63,15 +66,20 @@ public class FoodListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         // TODO: 10.08.2018 shu yerga versiga ishlashim kerak  
         setContentView(R.layout.activity_food_lists);
+        tableName = findViewById(R.id.table_name);
+        tableName.setText("   "+SettingPreferances.preferances.getTableName()+" Стол - "+SettingPreferances.preferances.getHallName()+ " зал");
+
         listenerKitchen();
+
         EventBus.getDefault().register(this);
         id = getIntent().getExtras().getString("ID");
         items = new ArrayList<>();
         button = findViewById(R.id.add);
         button.setOnClickListener(v -> {
-
             DataSingelton.getMyOrders().clear();
-            DataSingelton.setMyOrders(items);
+            DataSingelton.getMyOrders().addAll(items);
+            Toast.makeText(this, "" + DataSingelton.getMyOrders().size()
+                    , Toast.LENGTH_SHORT).show();
             Log.d(TAG, "TESTSETT: " + DataSingelton.getMyOrders().size());
             SettingPreferances.getSharedPreferance(null).setTableId(Integer.parseInt(id));
             startActivity(new Intent(this, MyMenuActivity.class));
@@ -107,7 +115,11 @@ public class FoodListActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
-        if (adapterMyTableList != null) loadDataNotif();
+        if (adapterMyTableList != null) {
+            loadDataNotif();
+
+            Log.d(TAG, "onLoad 1");
+        }
         if (!load) load = true;
         else loadData();
 
@@ -122,19 +134,39 @@ public class FoodListActivity extends AppCompatActivity {
                 SettingPreferances.preferances.setOrderId(orderData.get(0).getId());
                 orderId = orderData.get(0).getId();
                 loadArray();
+
             }
         });
 
     }
 
     public void loadDataNotif() {
+//        ApiInterface apiInterface = ApiClient.getRetrofit(this).create(ApiInterface.class);
+//        Call<ArrayList<OrderData>> dataCall=apiInterface.getMyTableListRetroofit(id);
+//        dataCall.enqueue(new Callback<ArrayList<OrderData>>() {
+//            @Override
+//            public void onResponse(Call<ArrayList<OrderData>> call, Response<ArrayList<OrderData>> response) {
+//                if (response.code()==200){
+//                    if (response.body().get(0).getOrderItems()!=null){
+//                        adapterMyTableList.updateList((ArrayList<OrderItemsItem>) response.body().get(0).getOrderItems());
+//                    }
+//                }
+//
+//            }
+//
+//            @Override
+//            public void onFailure(Call<ArrayList<OrderData>> call, Throwable t) {
+//                Log.d(TAG, "onFailure: Error  notif data ");
+//            }
+//        });
 
-            disposable = App.getApp().getAllOrderData(id).subscribe(new Consumer<ArrayList<OrderData>>() {
-                @Override
-                public void accept(ArrayList<OrderData> orderData) throws Exception {
-                    adapterMyTableList.updateList((ArrayList<OrderItemsItem>) orderData.get(0).getOrderItems());
-                }
-            });
+        disposable = App.getApp().getAllOrderData(id).subscribe(new Consumer<ArrayList<OrderData>>() {
+            @Override
+            public void accept(ArrayList<OrderData> orderData) throws Exception {
+                adapterMyTableList.updateList((ArrayList<OrderItemsItem>) orderData.get(0).getOrderItems());
+
+            }
+        });
     }
 
     public void listenerKitchen() {
@@ -142,7 +174,7 @@ public class FoodListActivity extends AppCompatActivity {
         notificationData.setCollectionChangeListener(new ObservableCollection.CollectionChangeListener() {
             @Override
             public void onCollectionChange(ObservableCollection.NotifyCollectionChangedAction action, Object obj, long position) {
-                Log.d(TAG, "onCollectionChange: Listiner");
+                Log.d(TAG, "onLoadd 3");
                 loadDataNotif();
             }
         });
@@ -157,6 +189,7 @@ public class FoodListActivity extends AppCompatActivity {
 
     @Subscribe
     public void EventMessageFood(EventMessageSendFood sendFood) {
+        Log.d(TAG, "onLoad 2");
         if (sendFood.isSendFood()) loadDataNotif();
     }
 

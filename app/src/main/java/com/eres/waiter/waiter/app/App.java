@@ -133,21 +133,24 @@ public class App extends Application {
 
                 // Qaysi afitsiant notifay qsa ham event ketaveradi !!!!
             }
+            if (a == NotificationTypees.TableIsNotServiced.ordinal()){
+               // Stol qoshil
+            }
 
-            if (a == 15) {
-                first:
-                for (Hall hall : DataSingelton.singelton.getHalls()) {
-                    for (TablesItem table : hall.getTables()) {
-                        if (table.getId() == note.getTableId()) {
-                            hall.getTables().remove(table);
-                            message.remove(note);
-                            EventBus.getDefault().post(new EventMessageRemoveTable(""));
-                            break first;
+                if (a == 15 || a == NotificationTypees.TableIsServiced.ordinal() || a == NotificationTypees.TableBooked.ordinal()) {
+                    first:
+                    for (Hall hall : DataSingelton.singelton.getHalls()) {
+                        for (TablesItem table : hall.getTables()) {
+                            if (table.getId() == note.getTableId()) {
+                                hall.getTables().remove(table);
+                                message.remove(note);
+                                EventBus.getDefault().post(new EventMessageRemoveTable(""));
+                                break first;
+                            }
                         }
                     }
-                }
 
-            }
+                }
         }
 
 

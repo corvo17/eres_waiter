@@ -18,11 +18,13 @@ import com.eres.waiter.waiter.R;
 import com.eres.waiter.waiter.activity.FoodListActivity;
 import com.eres.waiter.waiter.adapters.diffUtil.IAmTableCallback;
 import com.eres.waiter.waiter.app.App;
+import com.eres.waiter.waiter.logic.BaseLogic;
 import com.eres.waiter.waiter.model.IAmTables;
 import com.eres.waiter.waiter.model.enums.NotificationTypees;
 import com.eres.waiter.waiter.model.events.EventIAmTableChange;
 import com.eres.waiter.waiter.model.singelton.DataSingelton;
 import com.eres.waiter.waiter.model.test.NotificationEventAlarm;
+import com.eres.waiter.waiter.preferance.SettingPreferances;
 import com.eres.waiter.waiter.server.NotificationData;
 
 import org.greenrobot.eventbus.EventBus;
@@ -51,6 +53,9 @@ public class AdapterITable extends RecyclerView.Adapter<AdapterITable.MyViewHold
         holder.number.setText(list.get(position).getName());
         loadEventITableState(holder, position);
         holder.imageView.setOnClickListener(v -> {
+            SettingPreferances.preferances.setTableName(list.get(position).getName());
+            BaseLogic baseLogic = new BaseLogic();
+            baseLogic.seveHallName(list.get(position).getHallId());
             Intent intent = new Intent(holder.number.getContext(), FoodListActivity.class);
 
             Bundle bundle = new Bundle();

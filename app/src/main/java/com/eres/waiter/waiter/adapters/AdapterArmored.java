@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.eres.waiter.waiter.R;
 import com.eres.waiter.waiter.activity.AboutActivity;
 import com.eres.waiter.waiter.model.ArmoredTables;
+import com.eres.waiter.waiter.preferance.SettingPreferances;
 
 import java.util.ArrayList;
 
@@ -45,7 +46,7 @@ public class AdapterArmored extends RecyclerView.Adapter<AdapterArmored.MyViewHo
             bundle.putString("CLIENT_NAME", tables.getClient().getName());
             bundle.putString("CLIENT_NUMBER", tables.getClient().getPhones());
             bundle.putString("DATE", tables.getArmoredStartTime());
-
+            SettingPreferances.preferances.setTableName(tables.getTable().getName());
             Intent intent = new Intent(holder.number.getContext(), AboutActivity.class);
             intent.putExtras(bundle);
 
